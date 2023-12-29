@@ -6,7 +6,7 @@ const Register = () => {
     <div className="container d-flex justify-content-center align-items-center vh-100">
       <div className="card p-4">
         <h2 className="text-center mb-4">KAYIT OL</h2>
-        <form>
+        <form action="">
           <div className="row mb-3">
             <div className="col">
               <input
@@ -60,10 +60,7 @@ const Register = () => {
               required
             />
           </div>
-          
-        </form>
-        {/* İşveren mi yoksa freelancer mı olmak istersin? başlığı ve radio butonları */}
-        <div className="mt-3 text-center">
+          <div className="mt-3 text-center">
           <p className="mb-3">İşveren mi yoksa freelancer mı olmak istersin?</p>
           <div className="d-flex align-items-center mb-2">
             <input
@@ -72,6 +69,7 @@ const Register = () => {
               name="jobType"
               value="freelancer"
               className="me-2"
+              checked
             />
             <label htmlFor="freelancer" className="me-4">Freelancer olarak çalışmak istiyorum</label>
             <input
@@ -84,11 +82,16 @@ const Register = () => {
             <label htmlFor="employer">İşveren olmak istiyorum</label>
           </div>
         </div>
-        <div className="d-grid">
+          <div className="d-grid">
             <button type="submit" className="btn btn-success">
               Kayıt Ol
             </button>
           </div>
+          
+        </form>
+       
+        
+       
       </div>
     </div>
   );
