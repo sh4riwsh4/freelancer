@@ -1,21 +1,45 @@
-import React from "react"
-import "./Home.scss"
-import Featured from "../../components/featured/Featured"
+import React from "react";
+import "./Home.scss";
+import Featured from "../../components/featured/Featured";
+import photo from "../../components/featured/btc.png";
 
 const Home = () => {
-    return (
-        <div className="Home">
-            <Featured/>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, fugit dolore similique non pariatur, molestiae quae sapiente soluta animi deleniti quia, est dicta? Tenetur sit quaerat molestias ad tempora consequatur amet voluptatum et dignissimos alias, non corrupti error perferendis eveniet sint. Distinctio, commodi! Est porro neque qui, rem voluptates expedita quae, voluptate cupiditate consectetur dolor nam quidem ab suscipit ea! Facere, nisi voluptates at, labore sunt error laborum dolor quia accusamus, sit temporibus recusandae animi quas. Pariatur, veritatis error quod ut deleniti nihil nulla sapiente in sequi id, officiis ipsa! Fugit asperiores sed excepturi quis ex iusto quae veritatis voluptatum!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, fugit dolore similique non pariatur, molestiae quae sapiente soluta animi deleniti quia, est dicta? Tenetur sit quaerat molestias ad tempora consequatur amet voluptatum et dignissimos alias, non corrupti error perferendis eveniet sint. Distinctio, commodi! Est porro neque qui, rem voluptates expedita quae, voluptate cupiditate consectetur dolor nam quidem ab suscipit ea! Facere, nisi voluptates at, labore sunt error laborum dolor quia accusamus, sit temporibus recusandae animi quas. Pariatur, veritatis error quod ut deleniti nihil nulla sapiente in sequi id, officiis ipsa! Fugit asperiores sed excepturi quis ex iusto quae veritatis voluptatum!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, fugit dolore similique non pariatur, molestiae quae sapiente soluta animi deleniti quia, est dicta? Tenetur sit quaerat molestias ad tempora consequatur amet voluptatum et dignissimos alias, non corrupti error perferendis eveniet sint. Distinctio, commodi! Est porro neque qui, rem voluptates expedita quae, voluptate cupiditate consectetur dolor nam quidem ab suscipit ea! Facere, nisi voluptates at, labore sunt error laborum dolor quia accusamus, sit temporibus recusandae animi quas. Pariatur, veritatis error quod ut deleniti nihil nulla sapiente in sequi id, officiis ipsa! Fugit asperiores sed excepturi quis ex iusto quae veritatis voluptatum!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, fugit dolore similique non pariatur, molestiae quae sapiente soluta animi deleniti quia, est dicta? Tenetur sit quaerat molestias ad tempora consequatur amet voluptatum et dignissimos alias, non corrupti error perferendis eveniet sint. Distinctio, commodi! Est porro neque qui, rem voluptates expedita quae, voluptate cupiditate consectetur dolor nam quidem ab suscipit ea! Facere, nisi voluptates at, labore sunt error laborum dolor quia accusamus, sit temporibus recusandae animi quas. Pariatur, veritatis error quod ut deleniti nihil nulla sapiente in sequi id, officiis ipsa! Fugit asperiores sed excepturi quis ex iusto quae veritatis voluptatum!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, fugit dolore similique non pariatur, molestiae quae sapiente soluta animi deleniti quia, est dicta? Tenetur sit quaerat molestias ad tempora consequatur amet voluptatum et dignissimos alias, non corrupti error perferendis eveniet sint. Distinctio, commodi! Est porro neque qui, rem voluptates expedita quae, voluptate cupiditate consectetur dolor nam quidem ab suscipit ea! Facere, nisi voluptates at, labore sunt error laborum dolor quia accusamus, sit temporibus recusandae animi quas. Pariatur, veritatis error quod ut deleniti nihil nulla sapiente in sequi id, officiis ipsa! Fugit asperiores sed excepturi quis ex iusto quae veritatis voluptatum!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, fugit dolore similique non pariatur, molestiae quae sapiente soluta animi deleniti quia, est dicta? Tenetur sit quaerat molestias ad tempora consequatur amet voluptatum et dignissimos alias, non corrupti error perferendis eveniet sint. Distinctio, commodi! Est porro neque qui, rem voluptates expedita quae, voluptate cupiditate consectetur dolor nam quidem ab suscipit ea! Facere, nisi voluptates at, labore sunt error laborum dolor quia accusamus, sit temporibus recusandae animi quas. Pariatur, veritatis error quod ut deleniti nihil nulla sapiente in sequi id, officiis ipsa! Fugit asperiores sed excepturi quis ex iusto quae veritatis voluptatum!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, fugit dolore similique non pariatur, molestiae quae sapiente soluta animi deleniti quia, est dicta? Tenetur sit quaerat molestias ad tempora consequatur amet voluptatum et dignissimos alias, non corrupti error perferendis eveniet sint. Distinctio, commodi! Est porro neque qui, rem voluptates expedita quae, voluptate cupiditate consectetur dolor nam quidem ab suscipit ea! Facere, nisi voluptates at, labore sunt error laborum dolor quia accusamus, sit temporibus recusandae animi quas. Pariatur, veritatis error quod ut deleniti nihil nulla sapiente in sequi id, officiis ipsa! Fugit asperiores sed excepturi quis ex iusto quae veritatis voluptatum!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, fugit dolore similique non pariatur, molestiae quae sapiente soluta animi deleniti quia, est dicta? Tenetur sit quaerat molestias ad tempora consequatur amet voluptatum et dignissimos alias, non corrupti error perferendis eveniet sint. Distinctio, commodi! Est porro neque qui, rem voluptates expedita quae, voluptate cupiditate consectetur dolor nam quidem ab suscipit ea! Facere, nisi voluptates at, labore sunt error laborum dolor quia accusamus, sit temporibus recusandae animi quas. Pariatur, veritatis error quod ut deleniti nihil nulla sapiente in sequi id, officiis ipsa! Fugit asperiores sed excepturi quis ex iusto quae veritatis voluptatum!</p>
+  return (
+    <div className="Home">
+      <Featured />
+      <div className="container-fluid">
+      <div className="row my-2 ">
+        <div className="col-md-3">
+          <div className="card">
+            <img src={photo} className="card-img-top" alt="..."></img>
+            <div className="card-body">
+              <p className="card-text text-center">Kriptolarla hızlı ve güvenilir ödeme</p>
+            </div>
+          </div>
         </div>
-    )
-}
+        <div className="col-md-3"><div className="card">
+            <img src={photo} className="card-img-top" alt="..."></img>
+            <div className="card-body">
+              <p className="card-text text-center">ihtiyacın olan her konuda yetenekli ve hızlı freelancerlar</p>
+            </div>
+          </div></div>
+        <div className="col-md-3"><div className="card">
+            <img src={photo} className="card-img-top" alt="..."></img>
+        
+            <div className="card-body">
+              <p className="card-text text-center">10 saniyede yapılabilen işler ve anında kazanç </p>
+            </div>
+          </div></div>
+        <div className="col-md-3"><div className="card">
+            <img src={photo} className="card-img-top" alt="..."></img>
+            <div className="card-body">
+              <p className="card-text text-center">laptopunuzla istediğiniz yerde ve zamanda çalışma rahatlığı</p>
+            </div>
+          </div></div>
+      </div>
+    </div>
+    </div>
+  );
+};
 
-export default Home
+export default Home;

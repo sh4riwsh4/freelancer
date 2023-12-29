@@ -1,0 +1,24 @@
+.greenBox{
+    background-color: #013914;
+    width: 100%;
+    height:70vh;
+    display: flex;
+}
+.title{
+    font-weight: bold;
+    flex-basis: 40%;
+    color: white;
+    position: relative;
+     top: 120px;
+     left: 70px;
+}
+.img-fluid{
+    display: block;
+    position: relative;
+    height: 250px;
+    width: auto;
+    margin-bottom: 10px;
+    float: right;
+}
+
+  @import '../../../node_modules/bootstrap/scss/bootstrap.scss'

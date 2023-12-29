@@ -1,31 +1,18 @@
-import React from 'react'
-import "./Featured.scss"
+import React from "react";
+import "./Featured.scss";
+import photo from "./bitcoin.jpeg"
 
 const Featured = () => {
   return (
-    <div className='featured'>
-      <div className="container">
-        <div className="left">
-            <h1>Gasflşiwgqgaşklwgaklwg</h1>
-            <div className="search">
-                <div className="searchInput">
-                    <img src="" alt="" />
-                    <input type="text" placeholder='Deneme' />
-                </div>
-                <button>Search</button>
-            </div>
-            <div className="popular">
-                <span>Popular:</span>
-                <button>Web Design</button>
-                <button>Grafik Tasarım</button>
-                <button>Mobil Geliştirme</button>
-                <button>Yapay Zeka</button>
-            </div>
-        </div>
-        <div className="rigth"></div>
-      </div>
+  <div className="greenBox">
+    <div className="title">
+      <h3>Frelanceer Çalışarak </h3>
+      <h3>Kripto Para Kazanmak İstermisiniz?</h3>
     </div>
+   
+    <img src={photo} className="rounded float-right img-fluid  " alt=""></img>
+ </div>
   )
-}
+};
 
-export default Featured
+export default Featured;
