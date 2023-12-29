@@ -43,6 +43,7 @@ const Navbar = () => {
               <img src="https://i.pinimg.com/236x/17/f8/1e/17f81ec7203b785f31414948a451e731.jpg" alt="" />
               <span>{currentUser?.userName}</span>
               {open && <div className="options">
+                <Link className='link' to="/profile">Profilim</Link>
                 {currentUser?.isSeller && (
                   <>
                     <Link className='link' to="/myjobs">İşlerim</Link>
