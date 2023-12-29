@@ -9,6 +9,8 @@ import Message from "./pages/message/Message";
 import Messages from "./pages/messages/Messages";
 import Orders from "./pages/orders/Orders";
 import MyJobs from "./pages/myJobs/MyJobs";
+import Login from './pages/login/Login';
+import Register from './pages/register/Register'
 import './App.scss'
 
 
@@ -66,8 +68,16 @@ function App() {
             {
                 path:"/message/:id",
                 element:<Message/>
-            },
+            }
         ]
+        },
+        {
+            path:"/login",
+            element:<Login/>
+        },
+        {
+            path:"/register",
+            element:<Register/>
         },
       ]);
     
