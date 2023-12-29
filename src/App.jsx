@@ -10,6 +10,8 @@ import Messages from "./pages/messages/Messages";
 import Orders from "./pages/orders/Orders";
 import MyJobs from "./pages/myJobs/MyJobs";
 import Profile from "./pages/profile/Profile";
+import Login from './pages/login/Login';
+import Register from './pages/register/Register'
 import './App.scss'
 
 
@@ -73,6 +75,14 @@ function App() {
                 element:<Profile/>
             },               
         ]
+        },
+        {
+            path:"/login",
+            element:<Login/>
+        },
+        {
+            path:"/register",
+            element:<Register/>
         },
       ]);
     

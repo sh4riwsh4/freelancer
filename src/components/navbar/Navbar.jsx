@@ -23,7 +23,7 @@ const Navbar = () => {
   const currentUser= {
     id:1,
     userName:'semih',
-    isSeller : true
+    isSeller : false
   };
 
   return (
@@ -37,7 +37,7 @@ const Navbar = () => {
         <div className="links">
           <Link className='link' to="/jobs">Aktif İlanlar</Link>
           <Link className='link' to="/login">Giriş Yap</Link>
-          {!currentUser?.isSeller && <button>Kayıt Ol</button>}
+          {!currentUser?.isSeller && <Link className='link' to="/register">Kayıt Ol</Link>}
           {currentUser && (
             <div className="user" onClick={()=>setOpen(!open)}>
               <img src="https://i.pinimg.com/236x/17/f8/1e/17f81ec7203b785f31414948a451e731.jpg" alt="" />
