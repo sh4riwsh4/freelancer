@@ -1,12 +1,12 @@
 .footer{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     position: relative;
     bottom: 0;
     align-items: center;
     background-color: #013914;
     color: white;
-    height: 150px;
+    height: 180px;
 
     .container{
         display: block;
@@ -18,14 +18,16 @@
             justify-content: center;
             padding-bottom: 10px;
 
-            img{
+            .git-logo{
                 width: 25px;
             }
         }
         
         .bot-text{
+            display: block;
             .links{
                 text-align: center;
+                align-items: center;
                 padding-bottom: 10px;
             .link{
                 padding: 0px 10px;
@@ -34,7 +36,8 @@
             .text{
                 display: flex;
                 text-align: center;
-                padding-bottom: 10px;
+                justify-content: center;
+                align-items: center;
             }
             .copyright{
                 .text{
