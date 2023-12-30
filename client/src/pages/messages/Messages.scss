@@ -1,0 +1,112 @@
+.messages{
+    display: flex;
+    flex-direction: row;
+    height: 500px;
+    margin: 5px 5px 5px 5px;
+    .left{
+        flex-basis: 25%;
+        margin-right: 5px;
+        overflow: auto;
+        .box{
+            margin-bottom: 10px;
+            border: 2px solid lightgray;
+            display: flex;
+            flex-direction: row;
+            padding: 5px 5px 5px 5px;
+            .box-left{
+                flex-basis: 20%;
+                .sender-image{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border: 2px solid lightblue;
+                    z-index: 3;
+                    .pic{
+                        width: 80px;
+                        height: 80px;
+                    }
+                }
+            }
+            .box-right{
+                flex-basis: 80%;
+                .sender-name{
+                    padding: 2px 0px 0px 5px;
+                    font-weight: bold;
+                    font-size: 15px;
+                }
+                .content{
+                    padding: 2px 0px 0px 5px;
+                }
+                .time{
+                    padding: 2px 0px 0px 5px;
+                    display: flex;
+                    font-size: 12px;
+                    justify-content: flex-end;
+                    align-items: flex-end;
+                    text-align: end;
+                    position: relative;
+                    bottom: -15px;
+                }
+            }
+
+        }
+    }
+    .mid{
+        border-left: 4px solid lightgray;
+        border-right: 4px solid lightgray;
+        padding: 5px 5px 5px 5px;
+        flex-basis: 50%;
+        margin-right: 5px;
+    }
+    .right{
+        flex-basis: 25%;
+        background-color: lightgray;
+        border-radius: 20px;
+        .profile-card{
+            padding: 10px 10px 10px 10px;
+            .sender-pic{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .picture{
+                    border-radius: 100%;
+                    width: 150px;
+                    height: 150px;
+                }
+            }
+            .sender-name{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+                font-size: 25px;
+            }
+            .sender-title{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 14px;   
+            }
+            .sender-biography{
+                display: flex;
+                margin-left: 10px;
+                margin-right: 10px;
+                align-items: center;
+                justify-content: center;
+                font-size: 15px;
+            }
+            .sender-education{
+                margin-top: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .sender-location{
+                margin-top: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+}
