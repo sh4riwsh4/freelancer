@@ -1,26 +1,10 @@
 import React from "react"
-import { useForm } from "react-hook-form"
-import { DevTool } from "@hookform/devtools";
+import "./Add.scss"
 
 const Add = () => {
-  const { register, control, handleSubmit } = useForm({
-    mode: "onChange",
-  });
+    return (
+        <div className="Add">Add</div>
+    )
+}
 
-  return (
-    <>
-      <form onSubmit={handleSubmit(d => console.log(d))}>
-        <h1>React Hook Form DevTools</h1>
-
-        <label>Test</label>
-        <input {...register("test")} />
-
-        <input type="submit" />
-      </form>
-      
-      <DevTool control={control} /> {/* set up the dev tool */}
-    </>
-  );
-};
-
-export default Add;
+export default Add
