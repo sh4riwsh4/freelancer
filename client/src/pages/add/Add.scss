@@ -1,5 +1,6 @@
 .add{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     color: black;
@@ -37,18 +38,29 @@
                 font-weight: normal;      
             }
         }
-        .bot{
-            display: flex;
-            justify-content: space-between;
+        .bot {
+            display: block;
+            justify-content: end;
             position: relative;
             bottom: 0;
-            flex-basis: 10%;
-            padding-bottom: 20px;
-            .price{
-                padding-left: 50px;
-            }
-            .create{
-                padding-right: 50px;
+            left: 0;
+            width: 100%;
+            .create {
+                display: flex;
+                position: relative;
+                bottom: 0;
+                justify-content: center;
+                align-items: center;
+                padding: 10px;
+                .createJob {
+                    width: 100%;
+                    padding: 10px;
+                    background-color: green;
+                    color: #fff;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                }
             }
         }
     }
