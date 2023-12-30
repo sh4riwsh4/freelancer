@@ -6,12 +6,82 @@ const Messages = () => {
         <div className="messages">
             <div className="left">
                 <div className="box">
-                    <div className="left">
+                    <div className="box-left">
                         <div className="sender-image">
                             <img className="pic" src="https://i.pinimg.com/236x/17/f8/1e/17f81ec7203b785f31414948a451e731.jpg" alt="" />
                         </div>
                     </div>
-                    <div className="right">
+                    <div className="box-right">
+                        <div className="sender-name">Semih</div>
+                        <div className="content">Lorem ipsum dolor sit amet.</div>
+                        <div className="time">3dk önce</div>
+                    </div>
+                </div>
+                <div className="box">
+                    <div className="box-left">
+                        <div className="sender-image">
+                            <img className="pic" src="https://i.pinimg.com/236x/17/f8/1e/17f81ec7203b785f31414948a451e731.jpg" alt="" />
+                        </div>
+                    </div>
+                    <div className="box-right">
+                        <div className="sender-name">Semih</div>
+                        <div className="content">Lorem ipsum dolor sit amet.</div>
+                        <div className="time">3dk önce</div>
+                    </div>
+                </div>
+                <div className="box">
+                    <div className="box-left">
+                        <div className="sender-image">
+                            <img className="pic" src="https://i.pinimg.com/236x/17/f8/1e/17f81ec7203b785f31414948a451e731.jpg" alt="" />
+                        </div>
+                    </div>
+                    <div className="box-right">
+                        <div className="sender-name">Semih</div>
+                        <div className="content">Lorem ipsum dolor sit amet.</div>
+                        <div className="time">3dk önce</div>
+                    </div>
+                </div>
+                <div className="box">
+                    <div className="box-left">
+                        <div className="sender-image">
+                            <img className="pic" src="https://i.pinimg.com/236x/17/f8/1e/17f81ec7203b785f31414948a451e731.jpg" alt="" />
+                        </div>
+                    </div>
+                    <div className="box-right">
+                        <div className="sender-name">Semih</div>
+                        <div className="content">Lorem ipsum dolor sit amet.</div>
+                        <div className="time">3dk önce</div>
+                    </div>
+                </div>
+                <div className="box">
+                    <div className="box-left">
+                        <div className="sender-image">
+                            <img className="pic" src="https://i.pinimg.com/236x/17/f8/1e/17f81ec7203b785f31414948a451e731.jpg" alt="" />
+                        </div>
+                    </div>
+                    <div className="box-right">
+                        <div className="sender-name">Semih</div>
+                        <div className="content">Lorem ipsum dolor sit amet.</div>
+                        <div className="time">3dk önce</div>
+                    </div>
+                </div>                <div className="box">
+                    <div className="box-left">
+                        <div className="sender-image">
+                            <img className="pic" src="https://i.pinimg.com/236x/17/f8/1e/17f81ec7203b785f31414948a451e731.jpg" alt="" />
+                        </div>
+                    </div>
+                    <div className="box-right">
+                        <div className="sender-name">Semih</div>
+                        <div className="content">Lorem ipsum dolor sit amet.</div>
+                        <div className="time">3dk önce</div>
+                    </div>
+                </div>                <div className="box">
+                    <div className="box-left">
+                        <div className="sender-image">
+                            <img className="pic" src="https://i.pinimg.com/236x/17/f8/1e/17f81ec7203b785f31414948a451e731.jpg" alt="" />
+                        </div>
+                    </div>
+                    <div className="box-right">
                         <div className="sender-name">Semih</div>
                         <div className="content">Lorem ipsum dolor sit amet.</div>
                         <div className="time">3dk önce</div>

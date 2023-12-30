@@ -6,12 +6,14 @@
     .left{
         flex-basis: 25%;
         margin-right: 5px;
+        overflow: auto;
         .box{
+            margin-bottom: 10px;
+            border: 2px solid lightgray;
             display: flex;
             flex-direction: row;
-            height: 40px;
             padding: 5px 5px 5px 5px;
-            .left{
+            .box-left{
                 flex-basis: 20%;
                 .sender-image{
                     display: flex;
@@ -25,9 +27,26 @@
                     }
                 }
             }
-            .right{
+            .box-right{
                 flex-basis: 80%;
-                background-color: none;
+                .sender-name{
+                    padding: 2px 0px 0px 5px;
+                    font-weight: bold;
+                    font-size: 15px;
+                }
+                .content{
+                    padding: 2px 0px 0px 5px;
+                }
+                .time{
+                    padding: 2px 0px 0px 5px;
+                    display: flex;
+                    font-size: 12px;
+                    justify-content: flex-end;
+                    align-items: flex-end;
+                    text-align: end;
+                    position: relative;
+                    bottom: -15px;
+                }
             }
 
         }
