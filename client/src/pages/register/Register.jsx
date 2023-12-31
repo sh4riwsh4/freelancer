@@ -2,9 +2,6 @@ import React,{useState} from "react";
 import "./Register.scss";
 import axios from 'axios';
 
-
-
-
 const Register = () => {
 
   const [formData, setFormData] = useState({
@@ -12,7 +9,7 @@ const Register = () => {
     lastName: "",
     identityNumber: "",
     username: "",
-    password: "",
+    password_key: "",
     email: "",
     jobType: "freelancer", // Varsayılan olarak freelancer seçili
   });
@@ -31,18 +28,18 @@ const Register = () => {
     // Form verilerini formData state'inden al ve burada backend'e gönderme işlemini gerçekleştir
     console.log("Gönderilen Veriler: ", formData);
     // Backend ile iletişim kurmak için axios gibi bir kütüphane kullanılabilir
-    // axios.post('backend_url', formData).then(response => {
-    //   console.log("Backend'den gelen cevap: ", response.data);
-    // }).catch(error => {
-    //   console.error("Hata:", error);
-    // });
+    axios.post('http://localhost:8080/api/users', formData).then(response => {
+       console.log("Backend'den gelen cevap: ", response.data);
+     }).catch(error => {
+       console.error("Hata:", error);
+     });
     // Form gönderildikten sonra input değerlerini sıfırla
   setFormData({
     firstName: "",
     lastName: "",
     identityNumber: "",
-    username: "",
-    password: "",
+    userName: "",
+    password_key: "",
     email: "",
     jobType: "freelancer", // Varsayılan olarak freelancer seçili
   });
@@ -112,8 +109,8 @@ const Register = () => {
               type="password"
               className="form-control"
               placeholder="Şifre"
-              name="password"
-              value={formData.password}
+              name="password_key"
+              value={formData.password_key}
               onChange={handleChange}
               required
             />
