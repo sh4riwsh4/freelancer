@@ -15,27 +15,27 @@ const Home = () => {
           <div className="card">
             <img src={photo1} className="card-img-top" alt="..."></img>
             <div className="card-body">
-              <p className="card-text text-center">Kriptolarla hızlı ve güvenilir ödeme</p>
+              <p className="card-text text-center">Kriptoparalarla <b>hızlı</b> ve <b>güvenilir</b> ödeme</p>
             </div>
           </div>
         </div>
         <div className="col-sm-3"><div className="card">
             <img src={photo2} className="card-img-top" alt="..."></img>
             <div className="card-body">
-              <p className="card-text text-center">ihtiyacın olan her konuda yetenekli ve hızlı freelancerlar</p>
+              <p className="card-text text-center">İhtiyacın olan her konuda <b>yetenekli</b> ve <b>hızlı</b> freelancerlar</p>
             </div>
           </div></div>
         <div className="col-sm-3"><div className="card">
             <img src={photo3} className="card-img-top" alt="..."></img>
         
             <div className="card-body">
-              <p className="card-text text-center">10 saniyede yapılabilen işler ve anında kazanç </p>
+              <p className="card-text text-center"><b>10 saniyede</b> yapılabilen işler ve <b>anında</b> kazanç </p>
             </div>
           </div></div>
         <div className="col-sm-3"><div className="card">
             <img src={photo4} className="card-img-top" alt="..."></img>
             <div className="card-body">
-              <p className="card-text text-center">laptopunuzla istediğiniz yerde ve zamanda çalışma rahatlığı</p>
+              <p className="card-text text-center">Laptopunuzla <b>istediğiniz yerde</b> ve <b>zamanda</b> çalışma rahatlığı</p>
             </div>
           </div></div>
       </div>

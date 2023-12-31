@@ -7,7 +7,7 @@ const Featured = () => {
   <div className="greenBox">
     <div className="title">
       <div className="header">
-      <h1>Frelanceer Çalışarak Kripto Para Kazanmak İstermisiniz?</h1>
+      <h1>FrEelancer Çalışarak Kripto Para Kazanmak İster Misiniz?</h1>
       
       </div>
       
