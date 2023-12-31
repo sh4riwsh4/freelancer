@@ -1,108 +1,72 @@
-import React from "react"
-import "./Jobs.scss"
-import bookmark from './bookmark.png'
-import { Link, useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import "./Jobs.scss";
+import bookmark from './bookmark.png';
+import { Link } from 'react-router-dom';
 
 const Jobs = () => {
-    return (
-        <div className="jobs">
-            <div className="top">
-                <Link className='link' to="/jobs">Sana Özel</Link>
-                <Link className='link' to="/jobs">Son Paylaşılan</Link>
-                <Link className='link' to="/jobs">Hızlı İşler</Link>
-                <Link className='link' to="/jobs">Favoriler</Link>
-            </div>
-            <div className="bot">
-                <div className="job">
-                    <div className="left">
-                        <div className="time">Paylaşılma Zamanı: 3 dakika önce</div>
-                        <div className="name">Lorem ipsum dolor sit amet.</div>
-                        <div className="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia perspiciatis error, reiciendis corporis harum beatae, delectus consectetur sint, ut molestiae laudantium iusto facere laborum. Aliquam, praesentium iste error fugit quae similique earum nulla expedita rerum! Dolorem vitae numquam earum ducimus, nostrum repudiandae hic, a deleniti quae quam nam, nulla quos?</div>
-                        <div className="needed-skills"> CSS </div>
-                        <div className="needed-skills"> HTML </div>
-                        <div className="needed-skills"> React </div>
-                        <div className="needed-skills"> Python </div>
-                    </div>
-                    <div className="right">
-                        <div className="favorite">
-                            <img className="img" src={bookmark} alt="Favori Butonu" />
-                        </div>
-                        <div className="price">100€</div>
-                        <div className="deadline">10 gün</div>
-                        <div className="location">İzmir</div>
-                        <div className="user-review">5</div>
-                    </div>
-                </div>
-            </div>
-            <div className="bot">
-                <div className="job">
-                    <div className="left">
-                        <div className="time">3 dk önce</div>
-                        <div className="name">Lorem ipsum dolor sit amet.</div>
-                        <div className="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia perspiciatis error, reiciendis corporis harum beatae, delectus consectetur sint, ut molestiae laudantium iusto facere laborum. Aliquam, praesentium iste error fugit quae similique earum nulla expedita rerum! Dolorem vitae numquam earum ducimus, nostrum repudiandae hic, a deleniti quae quam nam, nulla quos?</div>
-                        <div className="needed-skills">CSS</div>
-                    </div>
-                    <div className="right">
-                        <div className="price">100€</div>
-                        <div className="deadline">10 gün</div>
-                        <div className="location">İzmir</div>
-                        <div className="user-review">5</div>
-                    </div>
-                </div>
-            </div>
-            <div className="bot">
-                <div className="job">
-                    <div className="left">
-                        <div className="time">3 dk önce</div>
-                        <div className="name">Lorem ipsum dolor sit amet.</div>
-                        <div className="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia perspiciatis error, reiciendis corporis harum beatae, delectus consectetur sint, ut molestiae laudantium iusto facere laborum. Aliquam, praesentium iste error fugit quae similique earum nulla expedita rerum! Dolorem vitae numquam earum ducimus, nostrum repudiandae hic, a deleniti quae quam nam, nulla quos?</div>
-                        <div className="needed-skills">CSS</div>
-                    </div>
-                    <div className="right">
-                        <button className="favorite"></button>
-                        <div className="price">100€</div>
-                        <div className="deadline">10 gün</div>
-                        <div className="location">İzmir</div>
-                        <div className="user-review">5</div>
-                    </div>
-                </div>
-            </div>
-            <div className="bot">
-                <div className="job">
-                    <div className="left">
-                        <div className="time">3 dk önce</div>
-                        <div className="name">Lorem ipsum dolor sit amet.</div>
-                        <div className="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia perspiciatis error, reiciendis corporis harum beatae, delectus consectetur sint, ut molestiae laudantium iusto facere laborum. Aliquam, praesentium iste error fugit quae similique earum nulla expedita rerum! Dolorem vitae numquam earum ducimus, nostrum repudiandae hic, a deleniti quae quam nam, nulla quos?</div>
-                        <div className="needed-skills">CSS</div>
-                    </div>
-                    <div className="right">
-                        <button className="favorite"></button>
-                        <div className="price">100€</div>
-                        <div className="deadline">10 gün</div>
-                        <div className="location">İzmir</div>
-                        <div className="user-review">5</div>
-                    </div>
-                </div>
-            </div>
-            <div className="bot">
-                <div className="job">
-                    <div className="left">
-                        <div className="time">3 dk önce</div>
-                        <div className="name">Lorem ipsum dolor sit amet.</div>
-                        <div className="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quia perspiciatis error, reiciendis corporis harum beatae, delectus consectetur sint, ut molestiae laudantium iusto facere laborum. Aliquam, praesentium iste error fugit quae similique earum nulla expedita rerum! Dolorem vitae numquam earum ducimus, nostrum repudiandae hic, a deleniti quae quam nam, nulla quos?</div>
-                        <div className="needed-skills">CSS</div>
-                    </div>
-                    <div className="right">
-                        <button className="favorite"></button>
-                        <div className="price">Ücret: 100€</div>
-                        <div className="deadline">Teslim Süresi: 10 gün</div>
-                        <div className="location">Konum: İzmir</div>
-                        <div className="user-review">Kullanıcı Puanı:5</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
-}
+  const DataFetchingComponent = () => {
+    const [data, setData] = useState([]);
 
-export default Jobs
+    useEffect(() => {
+      fetchData();
+    }, []);
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/api/jobs/all');
+        const jsonData = await response.json();
+        setData(jsonData);
+      } catch (error) {
+        console.log('Veri çekme hatası:', error);
+      }
+    };
+
+    const calculateDateDifference = (startDate, endDate) => {
+      const diffInMilliseconds = Math.abs(endDate - startDate);
+      const diffInDays = Math.ceil(diffInMilliseconds / (1000 * 60 * 60 * 24));
+    
+      return diffInDays;
+    };
+
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleDateString('tr-TR');
+
+    return (
+      <div>
+        {data.map((item) => (
+          <div key={item.id} className="bot">
+            <div className="job">
+              <div className="left">
+                <div className="time">Paylaşılma Zamanı: {calculateDateDifference(new Date(item.createDate), currentDate)} gün önce</div>
+                <div className="name">{item.title}</div>
+                <div className="description">{item.description}</div>
+              </div>
+              <div className="right">
+                <div className="favorite">
+                  <img className="img" src={bookmark} alt="Favori Butonu" />
+                </div>
+                <div className="price">Ücret: {item.price}</div>
+                <div className="deadline">Teslim Zamanı: {calculateDateDifference(new Date(item.deadline), currentDate)} gün</div>
+                <div className="location">Konum: {item.user.location}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  };
+
+  return (
+    <div className="jobs">
+      <div className="top">
+        <Link className='link' to="/jobs">Sana Özel</Link>
+        <Link className='link' to="/jobs">Son Paylaşılan</Link>
+        <Link className='link' to="/jobs">Hızlı İşler</Link>
+        <Link className='link' to="/jobs">Favoriler</Link>
+      </div>
+      <DataFetchingComponent />
+    </div>
+  );
+};
+
+export default Jobs;

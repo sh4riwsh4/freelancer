@@ -90,7 +90,37 @@ const Messages = () => {
             </div>
             <div className="mid">
                 <div className="message">
-                    merhaba
+                    <div className="message-container">
+                        <div className="msgs">
+                            <div className="item">
+                                <img src="https://i.pinimg.com/236x/17/f8/1e/17f81ec7203b785f31414948a451e731.jpg" alt="" />
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat obcaecati fuga molestias possimus nemo, neque facere quidem mollitia voluptatum amet!</p>
+                            </div>
+                            <div className="item owner">
+                                <img src="https://i.pinimg.com/236x/17/f8/1e/17f81ec7203b785f31414948a451e731.jpg" alt="" />
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat obcaecati fuga molestias possimus nemo, neque facere quidem mollitia voluptatum amet!</p>
+                            </div>                            <div className="item">
+                                <img src="https://i.pinimg.com/236x/17/f8/1e/17f81ec7203b785f31414948a451e731.jpg" alt="" />
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat obcaecati fuga molestias possimus nemo, neque facere quidem mollitia voluptatum amet!</p>
+                            </div>
+                            <div className="item owner">
+                                <img src="https://i.pinimg.com/236x/17/f8/1e/17f81ec7203b785f31414948a451e731.jpg" alt="" />
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat obcaecati fuga molestias possimus nemo, neque facere quidem mollitia voluptatum amet!</p>
+                            </div>                            <div className="item">
+                                <img src="https://i.pinimg.com/236x/17/f8/1e/17f81ec7203b785f31414948a451e731.jpg" alt="" />
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat obcaecati fuga molestias possimus nemo, neque facere quidem mollitia voluptatum amet!</p>
+                            </div>
+                            <div className="item owner">
+                                <img src="https://i.pinimg.com/236x/17/f8/1e/17f81ec7203b785f31414948a451e731.jpg" alt="" />
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat obcaecati fuga molestias possimus nemo, neque facere quidem mollitia voluptatum amet!</p>
+                            </div>
+                        </div>
+                        <hr />
+                        <div className="write">
+                            <textarea name="" placeholder="Mesajını gir." id="" cols="30" rows="10"></textarea>
+                            <button>Gönder</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className="right">

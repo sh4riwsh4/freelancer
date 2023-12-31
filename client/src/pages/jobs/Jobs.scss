@@ -17,11 +17,13 @@
         justify-content: center;
         align-items: center;
         .job{
+            display: flex;
+            flex-direction: row;
             border-radius: 10px;
-            width: 95%;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            background-color: lightgray;
+            width: 85%;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            background-color: rgb(213, 233, 213);
             display: flex;
             padding: 10px 10px 10px 10px;
             .left{
@@ -42,14 +44,14 @@
                 }
             }
             .right{
-                flex-basis: 10%;
-                text-align: center;
+                flex-basis: 15%;
+                text-align: left;
                 display: flex;
                 flex-direction: column;
                 .favorite{
                     position: relative;
                     display: flex;
-                    right: -108px;
+                    right: -147px;
                     border-radius: 100px;
                     width: 30px;
                     background-color: white;
