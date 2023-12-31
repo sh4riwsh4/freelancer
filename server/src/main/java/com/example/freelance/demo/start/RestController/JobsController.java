@@ -4,6 +4,8 @@ import com.example.freelance.demo.start.entitiy.Jobs;
 import com.example.freelance.demo.start.entitiy.User;
 import com.example.freelance.demo.start.service.abstracts.JobsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.batch.BatchProperties;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,6 +29,11 @@ public class JobsController {
     @GetMapping("/jobs/id/{jobsId}")
     public Jobs findById(@PathVariable int jobsId){
         Jobs jobs=jobsService.findById(jobsId);
+        return jobs;
+    }
+    @GetMapping("/jobs/user/{userName}")
+    public List<Jobs> getUserJobs(@PathVariable String userName) {
+        List<Jobs> jobs = jobsService.getUserJobs(userName);
         return jobs;
     }
     @PostMapping("/jobs")

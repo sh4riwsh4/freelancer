@@ -12,7 +12,6 @@ import MyJobs from "./pages/myJobs/MyJobs";
 import Profile from "./pages/profile/Profile";
 import Login from './pages/login/Login';
 import Register from './pages/register/Register'
-import DataFetchingComponent from "./deneme";
 import './App.scss'
 
 
@@ -53,7 +52,7 @@ function App() {
             },
             {
                 path:"/orders",
-                element:<DataFetchingComponent/>
+                element:<Orders/>
             },
             {
                 path:"/myJobs",

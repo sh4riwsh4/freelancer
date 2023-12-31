@@ -49,6 +49,7 @@ public class JobsServiceImpl implements JobsService {
         return jobsRepository.findAllActiveJobs();
     }
 
+    @Override
     public List<Jobs> getUserJobs(String userName) {
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("GetProjectsByUserName");
         query.registerStoredProcedureParameter("inputUserName", String.class, ParameterMode.IN);

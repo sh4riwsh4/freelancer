@@ -58,7 +58,7 @@ const Navbar = () => {
           )}
         </div>
       </div>
-      {((active || pathname !== "/") && (pathname !== "/messages")) && (
+      {((active || pathname !== "/") && (pathname !== "/messages" && pathname !== "/orders" && pathname !== "/myjobs")) && (
         <>
           <hr />
           <div className="menu">
