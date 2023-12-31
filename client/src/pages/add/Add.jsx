@@ -3,6 +3,8 @@ import { Form, Button } from 'react-bootstrap';
 import './Add.scss';
 import axios from 'axios';
 
+
+
 const Add = () => {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
@@ -49,9 +51,9 @@ const Add = () => {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container my-4 w-75">
       <h2>İlan Oluştur</h2>
-      <Form onSubmit={handleIlanSubmit}>
+      <Form onSubmit={handleIlanSubmit} autoComplete='off'>
         <Form.Group className="mb-3" controlId="formtitle">
           <Form.Label>İlan Başlığı</Form.Label>
           <Form.Control
@@ -97,7 +99,7 @@ const Add = () => {
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button variant="primary mb-2" type="submit">
           İlanı Yayınla
         </Button>
       </Form>
