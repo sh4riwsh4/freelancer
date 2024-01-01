@@ -66,7 +66,7 @@ public class UserRestController {
     public String welcome(){
         return "hello welcome";
     }
-    @PostMapping("/addNewUser")
+    @PostMapping("addNewUser")
     public User addUser(@RequestBody CreateUserRequest request){
         return  userService.createUser(request);
     }

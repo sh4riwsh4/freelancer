@@ -12,9 +12,9 @@ const Register = () => {
 
   const handleContinue = () => {
     if (selectedButton === 'button1') {
-      setChosenType(['ROLE_ISALAN']);
+      setChosenType('ROLE_ISALAN');
     } else if (selectedButton === 'button2') {
-      setChosenType(['ROLE_ISVEREN']);
+      setChosenType('ROLE_ISVEREN');
     }
   };
 
@@ -25,7 +25,7 @@ const Register = () => {
     userName: "",
     password: "",
     email: "",
-    authorities: "",
+    authorities: chosenType,
   });
   
   const handleChange = (e) => {

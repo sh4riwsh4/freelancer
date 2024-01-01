@@ -22,18 +22,12 @@ const Navbar = () => {
   loggedIn = true;
   }
 
-
-  const handleRefresh = () => {
-    window.location.reload();
-  };
-
   const handleLogout = () => {
     loggedIn = false;
     userId = null;
     localStorage.clear();
-    handleRefresh()
+    console.log("logged out")
   };
-
 
   useEffect(() =>{
     window.addEventListener("scroll", isActive);
