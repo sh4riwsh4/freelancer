@@ -52,7 +52,7 @@ const Register = () => {
     username: "",
     password: "",
     email: "",
-    authorities: chosenType,
+    authorities:chosenType
   });
   };
 
@@ -80,7 +80,7 @@ const Register = () => {
             </button>
           </div>
         </div>
-      )}
+      )};
 
       <div className="container d-flex justify-content-center align-items-center vh-100">
         <div className="card p-4">
