@@ -27,15 +27,6 @@ const MyJobs = () => {
                     <td>Semih</td>
                     <td>
                         <img className="contact" src={deleteImg} alt="" />
-                    </td>                    <td>
-                        <img className="img" src={deleteImg} alt="" />
-                    </td>
-                    <td>İş 1</td>
-                    <td>43</td>
-                    <td>Aktif</td>
-                    <td>Semih</td>
-                    <td>
-                        <img className="contact" src={deleteImg} alt="" />
                     </td>
                 </tr>
                 </table>

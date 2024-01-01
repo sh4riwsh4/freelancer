@@ -30,7 +30,7 @@ const Profile = () => {
                         <div className="text">
                             <div className="name"><b>İsim Soyisim: </b>{currentUser?.name} {currentUser?.surname}</div>
                             <div className="age"><b>Yaş:</b> {currentUser?.age}</div>
-                            <div className="job"><b>Meslek: </b>{currentUser?.job}</div>
+                            <div className="jobtext"><b>Meslek: </b>{currentUser?.job}</div>
                             <div className="star"><b>Kullanıcı Puanları:</b> {currentUser?.userReviews}★</div>
                         </div>
                     </div>
