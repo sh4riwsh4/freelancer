@@ -15,11 +15,19 @@ const Navbar = () => {
   const storedData = localStorage.getItem('user');
   let loggedIn = false;
   let userId = null;
+
   if (storedData){
   const parsedData = JSON.parse(storedData);
   userId = parsedData.data.userId;
   loggedIn = true;
   }
+
+  const handleLogout = () => {
+    loggedIn = false;
+    userId = null;
+    localStorage.clear();
+    console.log("logged out")
+  };
 
   useEffect(() =>{
     window.addEventListener("scroll", isActive);
@@ -31,7 +39,7 @@ const Navbar = () => {
 
   const currentUser= {
     id:1,
-    userName: userId ? null : "a",
+    userName: userId ? userId : "a",
     isSeller : true
   };
 
@@ -45,9 +53,13 @@ const Navbar = () => {
         </div>
         <div className="links">
           <Link className='link' to="/jobs">Aktif İlanlar</Link>
-          {userId ? null : <Link className="link" to="/login">Giriş Yap</Link>}
-          {!currentUser?.isSeller && <Link className='link' to="/register">Kayıt Ol</Link>}
-          {currentUser && (
+          {!loggedIn && (
+            <>
+              <Link className="link" to="/login">Giriş Yap</Link>
+              <Link className="link" to="/register">Kayıt Ol</Link>
+            </>
+          )}
+          {loggedIn && (
             <div className="user" onClick={()=>setOpen(!open)}>
               <img src="https://i.pinimg.com/236x/17/f8/1e/17f81ec7203b785f31414948a451e731.jpg" alt="" />
               <span>{currentUser?.userName}</span>
@@ -61,7 +73,7 @@ const Navbar = () => {
                 )}
                 <Link className='link' to="/orders">Siparişlerim</Link>
                 <Link className='link' to="/messages">Mesajlar</Link>
-                <Link className='link' to="/">Çıkış Yap</Link>
+                <Link className='link' to="/" onClick={handleLogout}>Çıkış Yap</Link>
               </div>}
             </div>
           )}
