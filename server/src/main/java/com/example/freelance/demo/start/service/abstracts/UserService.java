@@ -11,7 +11,7 @@ public interface UserService extends UserDetailsService {
     User findById(int id);
     void deleteById(int id);
     User save(User user);
-    User getUserByName(String Name);
+    User getUserByFirstName(String Name);
 
     User createUser(CreateUserRequest request);
 }

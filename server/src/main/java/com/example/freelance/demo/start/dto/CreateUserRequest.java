@@ -7,9 +7,15 @@ import java.util.Set;
 
 @Builder
 public record CreateUserRequest(
-    String name,
-    String username,
-    String password,
-    Set<Role>  authorities
+        String firstName,
+        String lastName,
+        String email,
+        String username,
+        String password,
+        String location,
+        int wallet,
+        String identityNumber,
+        Set<Role> authorities
+
 ) {
 }

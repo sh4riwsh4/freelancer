@@ -46,10 +46,10 @@ public class UserRestController {
     }
     @GetMapping("/users/firstName/{firstName}")
     public User getByUserName(@PathVariable String firstName){
-        return userService.getUserByName(firstName);
+        return userService.getUserByFirstName(firstName);
     }
 
-    @PutMapping("/users")
+    @PutMapping("/ORTAK/users")
     public User updateUser(@RequestBody User user){return userService.save(user);}
 
     @DeleteMapping("/users/userId/{userId}")
@@ -57,7 +57,7 @@ public class UserRestController {
         User user=userService.findById(userId);
         userService.deleteById(userId);
     }
-    @GetMapping("/users/userName/{userName}")
+    @GetMapping("/ISVEREN/users/userName/{userName}")
     public ResponseEntity<List<Jobs>> getUserJobs(@PathVariable String userName) {
         List<Jobs> jobs = jobsService.getUserJobs(userName);
         return new ResponseEntity<>(jobs, HttpStatus.OK);
@@ -66,19 +66,11 @@ public class UserRestController {
     public String welcome(){
         return "hello welcome";
     }
-    @PostMapping("/addNewUser")
+    @PostMapping("/PUBLIC/addNewUser")
     public User addUser(@RequestBody CreateUserRequest request){
         return  userService.createUser(request);
     }
 
-    @GetMapping("/user")
-    public String getUserString(){
-        return "This is user";
-    }
-    @GetMapping("/admin")
-    public String getAdminString(){
-        return "This is admin";
-    }
     @PostMapping("/generateToken")
     public String generateToken(@RequestBody AuthRequest request) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.username(), request.password()));

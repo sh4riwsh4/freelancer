@@ -10,13 +10,11 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:3000")
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;
@@ -34,7 +32,7 @@ public class AuthController {
         this.userService = userService;
     }
 
-    @PostMapping("/login")
+    @PostMapping("/PUBLIC/login")
     public AuthResponse login(@RequestBody AuthRequest authRequest) {
         // Kullanıcı adı ve şifre ile authentication token oluştur
         Authentication authentication = authenticationManager.authenticate(
@@ -59,5 +57,6 @@ public class AuthController {
             // Authentication başarısız ise, hata mesajı döndürülebilir
             throw new RuntimeException("Authentication failed");
         }
+
     }
 }

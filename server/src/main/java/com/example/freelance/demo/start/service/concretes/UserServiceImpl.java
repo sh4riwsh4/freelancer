@@ -46,18 +46,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByName(String Name) {
-        return userRepository.getUserByName(Name);
+    public User getUserByFirstName(String Name) {
+        return userRepository.getUserByFirstName(Name);
     }
-
-
     public Optional<User> getByUserName(String userName){
         return userRepository.findByUsername(userName);
     }
     public User createUser(CreateUserRequest request){
-        System.out.println("hello");
         User newUser=User.builder()
-                .name(request.name())
+                .firstName(request.firstName())
+                .lastName(request.lastName())
+                .wallet(request.wallet())
+                .location(request.location())
+                .email(request.email())
+                .identityNumber(request.identityNumber())
                 .username(request.username())
                 .password(passwordEncoder.encode(request.password()))
                 .authorities(request.authorities())

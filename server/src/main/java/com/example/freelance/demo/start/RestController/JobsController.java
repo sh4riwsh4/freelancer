@@ -16,27 +16,27 @@ public class JobsController {
     public JobsController(JobsService jobsService){
         this.jobsService=jobsService;
     }
-    @GetMapping("/jobs/all")
+    @GetMapping("/ORTAK/jobs/all")
     public List<Jobs> findAll(){
         return jobsService.findAll();
     }
-    @GetMapping("/jobs/active")
+    @GetMapping("/ORTAK/jobs/active")
     public List<Jobs> findAllActive(){
         return jobsService.findAllActiveJobs();
     }
-    @GetMapping("/jobs/id/{jobsId}")
+    @GetMapping("/ORTAK/jobs/id/{jobsId}")
     public Jobs findById(@PathVariable int jobsId){
         Jobs jobs=jobsService.findById(jobsId);
         return jobs;
     }
-    @PostMapping("/jobs")
+    @PostMapping("/PUBLIC/jobs")
     public Jobs addJobs(@RequestBody Jobs jobs){
         jobs.setId(0);
         return jobsService.save(jobs);
     }
-    @PutMapping("/jobs")
+    @PutMapping("/ISVEREN/jobs")
     public Jobs updateJobs(@RequestBody Jobs jobs){return jobsService.save(jobs);}
-    @DeleteMapping("/jobs/{jobsId}")
+    @DeleteMapping("/ORTAK/jobs/{jobsId}")
     public  void deleteUser(@PathVariable int jobsId){
         Jobs jobs=jobsService.findById(jobsId);
         jobsService.deleteById(jobsId);

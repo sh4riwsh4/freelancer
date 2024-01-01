@@ -23,7 +23,7 @@ public class FileController {
     @Autowired
     private S3FileUploadService s3FileUploadService;
 
-    @PostMapping("/upload")
+    @PostMapping("/ISALAN/upload")
     public String handleFileUpload(@RequestParam MultipartFile file) throws IOException {
         // Orijinal dosya adını alın
         String originalFilename = file.getOriginalFilename();
@@ -57,7 +57,7 @@ public class FileController {
     @Autowired
     private S3FileDownloadService s3FileDownloadService;
 
-    @GetMapping("/download/{filename}")
+    @GetMapping("/ISALAN/download/{filename}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String filename) {
         // Dosya indirme işlemini gerçekleştirir.
         File downloadedFile = s3FileDownloadService.downloadFile(filename);

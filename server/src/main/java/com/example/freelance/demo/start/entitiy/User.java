@@ -19,19 +19,20 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Column(name = "name")
-    private String name;
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
+    private String lastName;
     @Column(name = "email", unique = true)
     private String email;
     @Column(name = "user_name", unique = true)
     private String username;
     private String password;
-    @Column(name = "user_type")
-    private int type;
     @Column(name = "location")
     private String location;
     @Column(name = "wallet")
     private int wallet;
+    private String identityNumber;
 
     private boolean accountNonExpired;
     private boolean isEnabled;

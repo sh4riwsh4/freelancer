@@ -15,20 +15,20 @@ public class OfferRestController {
     public OfferRestController(OfferService offerService){
         this.offerService=offerService;
     }
-    @PostMapping("/offers/create")
+    @PostMapping("/ISALAN/offers/create")
     public Offers createOffer(@RequestBody Offers offers) {
         offers.setId(0);
         return offerService.createOffer(offers);
     }
-    @PostMapping("/offers/accept/{offerId}")
+    @PostMapping("/ISVEREN/offers/accept/{offerId}")
     public void acceptOffer(@PathVariable int offerId) {
         offerService.acceptOffer(offerId);
     }
-    @PostMapping("/offers/reject/{offerId}")
+    @PostMapping("/ISVEREN/offers/reject/{offerId}")
     public void rejectOffer(@PathVariable int offerId) {
         offerService.rejectOffer(offerId);
     }
-    @GetMapping("/offers/{offersId}")
+    @GetMapping("/ORTAK/offers/{offersId}")
     public List<Offers> getOffersForJob(@PathVariable int offersId) {
         return offerService.getOffersForJob(offersId);
     }
