@@ -25,7 +25,7 @@ const Register = () => {
     userName: "",
     password: "",
     email: "",
-    authorities: chosenType,
+    authorities: "",
   });
   
   const handleChange = (e) => {
@@ -52,7 +52,7 @@ const Register = () => {
     username: "",
     password: "",
     email: "",
-    authorities: "",
+    authorities: chosenType,
   });
   };
 
