@@ -1,5 +1,6 @@
 import React from "react";
 import "./Home.scss";
+import {Link} from "react-router-dom"
 import Featured from "../../components/featured/Featured";
 import photo1 from "../../components/featured/img1.jpeg";
 import photo2 from "../../components/featured/img2.jpeg";
@@ -8,16 +9,85 @@ import photo4 from "../../components/featured/img4.jpeg";
 
 const Home = () => {
   const loggedIn = true;
-
+//to={`/job/${item.id}`} link yolu
   return (
     <div>
       {loggedIn ? (
         <div className="loggedInDiv">
-          {/* LoggedIn durumunda gösterilecek içerik */}
-          <h1>Welcome, User!</h1>
-          <p>This is the content for logged in users.</p>
+           {/* LoggedIn durumunda gösterilecek içerik */}
+          <div className="container-fluid">
+            <h1 >İlan Listesi</h1>
+            <div className="row">
+             
+            
+            <div className="col-sm-4 ">
+              <div className="product-card">
+            <img
+              className="img-top"
+              src={photo1}
+              alt="Denim Jeans"
+              style={{ width: "100%" }}
+            />
+            <div className="product-name">
+              <img
+                className="rounded-circle profil-photo "
+                src={photo2}
+                alt=""
+              />
+              <span>Furkan Salduz</span>
+            </div>
+            <Link className="link">
+            <h1 className="product-title">Tailored Jeans</h1>
+            </Link>
+            <div className="product-body">
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Similique, minus.
+              </p>
+              <p className="price">$19.99</p>
+              
+            </div>
+          </div>
+              </div>
+              <div className="col-sm-4 ">
+              <div className="product-card">
+            <img
+              className="img-top"
+              src={photo1}
+              alt="Denim Jeans"
+              style={{ width: "100%" }}
+            />
+            <div className="product-name">
+              <img
+                className="rounded-circle profil-photo "
+                src={photo2}
+                alt=""
+              />
+              <span>Furkan Salduz</span>
+            </div>
+            <Link className="link">
+            <h1 className="product-title">Tailored Jeans</h1>
+            </Link>
+            <div className="product-body">
+              <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Similique, minus.
+              </p>
+              <p className="price">$19.99</p>
+             
+            </div>
+          </div>
+              </div>
+                
+             
+            
+            </div>
+          </div>
+         
+          
         </div>
-      ) : (
+      ) : 
+      (
         <div className="Home">
           <Featured />
           <div className="container-fluid">
@@ -49,7 +119,8 @@ const Home = () => {
 
                   <div className="card-body">
                     <p className="card-text text-center">
-                      <b>10 saniyede</b> yapılabilen işler ve <b>anında</b> kazanç
+                      <b>10 saniyede</b> yapılabilen işler ve <b>anında</b>{" "}
+                      kazanç
                     </p>
                   </div>
                 </div>
