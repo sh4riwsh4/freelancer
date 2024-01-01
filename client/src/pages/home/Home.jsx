@@ -5,6 +5,7 @@ import photo1 from "../../components/featured/img1.jpeg";
 import photo2 from "../../components/featured/img2.jpeg";
 import photo3 from "../../components/featured/img3.jpeg";
 import photo4 from "../../components/featured/img4.jpeg";
+
 const Home = () => {
   return (
     <div className="Home">
