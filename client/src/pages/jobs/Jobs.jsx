@@ -13,7 +13,7 @@ const Jobs = () => {
 
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:8080/api/jobs/all');
+        const response = await fetch('http://localhost:8080/api/PUBLIC/jobs/all');
         const jsonData = await response.json();
         setData(jsonData);
       } catch (error) {

@@ -16,7 +16,7 @@ public class JobsController {
     public JobsController(JobsService jobsService){
         this.jobsService=jobsService;
     }
-    @GetMapping("/ORTAK/jobs/all")
+    @GetMapping("/PUBLIC/jobs/all")
     public List<Jobs> findAll(){
         return jobsService.findAll();
     }

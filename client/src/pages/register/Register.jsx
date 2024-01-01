@@ -48,7 +48,7 @@ const Register = () => {
     console.log("Gönderilen Veriler: ", formData);
 
     axios
-      .post('http://localhost:8080/api/addNewUser', formData)
+      .post('http://localhost:8080/api/PUBLIC/addNewUser', formData)
       .then((response) => {
         console.log("Backend'den gelen cevap: ", response.data);
       })

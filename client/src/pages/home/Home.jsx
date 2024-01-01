@@ -15,7 +15,7 @@ const DataFetchingComponent = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/api/jobs/all`);
+      const response = await fetch(`http://localhost:8080/api/PUBLIC/jobs/all`);
       const jsonData = await response.json();
       setData(jsonData);
     } catch (error) {
@@ -38,7 +38,7 @@ const DataFetchingComponent = () => {
   {loggedIn ? (
   <div className="loggedInDiv">
     {/* LoggedIn durumunda gösterilecek içerik */}
-    <div className="container-fluid">
+    <div className="container">
       <h1>İlan Listesi</h1>
       <div className="row justify-content-center">
         {data.map((item) => (

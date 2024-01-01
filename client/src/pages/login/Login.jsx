@@ -25,7 +25,7 @@ const Login = () => {
     e.preventDefault();
     console.log('Gönderilen Veriler: ', formData);
     
-    axios.post('http://localhost:8080/api/login', formData)
+    axios.post('http://localhost:8080/api/PUBLIC/login', formData)
       .then(response => {
         console.log('Backend\'den gelen cevap: ', response.data);
         if (response.data) {
