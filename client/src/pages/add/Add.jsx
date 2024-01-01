@@ -24,7 +24,7 @@ const Add = () => {
       };
 
       // Sunucuya POST isteği gönder
-      const response = await axios.post('http://localhost:8081/api/jobs', formData);
+      const response = await axios.post('http://localhost:8080/api/jobs', formData);
 
       console.log('İlan başarıyla oluşturuldu:', response.data);
 
