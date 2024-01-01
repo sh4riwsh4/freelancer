@@ -1,17 +1,16 @@
 package com.example.freelance.demo.start.service.concretes;
 
-import com.example.freelance.demo.start.DAO.UserRepository;
-import com.example.freelance.demo.start.dto.CreateUserRequest;
-import com.example.freelance.demo.start.entitiy.User;
-import com.example.freelance.demo.start.service.abstracts.UserService;
-import jakarta.persistence.EntityNotFoundException;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.example.freelance.demo.start.DAO.UserRepository;
+import com.example.freelance.demo.start.entitiy.User;
+import com.example.freelance.demo.start.service.abstracts.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -22,7 +21,6 @@ public class UserServiceImpl implements UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @Override
     public List<User> findAll() {
         return userRepository.findAll();
     }

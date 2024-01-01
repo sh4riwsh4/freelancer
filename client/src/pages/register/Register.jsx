@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import "./Register.scss";
 import axios from 'axios';
+import { Link } from "react-router-dom";
 
 const Register = () => {
 
@@ -21,7 +22,10 @@ const Register = () => {
       ...formData,
       [name]: value,
     });
+
+    
   };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -72,6 +76,7 @@ const Register = () => {
                 name="lastName"
                 value={formData.lastName}
                 onChange={handleChange}
+                
                 required
               />
             </div>
@@ -88,6 +93,7 @@ const Register = () => {
               minLength={11}
               maxLength={11}
               pattern="[0-9]*"
+              inputMode="numeric" 
             />
           </div>
           <div className="mb-3">
@@ -150,6 +156,9 @@ const Register = () => {
             />
             <label htmlFor="employer">İşveren olmak istiyorum</label>
           </div>
+          <p className="text-center">
+          Hesabınız zaten var mı?, <Link to="/login"> Giriş Yap </Link>
+        </p>
         </div>
           <div className="d-grid">
             <button type="submit" className="btn btn-success">
