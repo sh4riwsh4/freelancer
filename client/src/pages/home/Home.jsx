@@ -22,8 +22,17 @@ const DataFetchingComponent = () => {
       console.log('Veri çekme hatası:', error);
     }
   };
-  const loggedIn = false;
-//link yolu
+
+  const storedData = localStorage.getItem('user');
+  let loggedIn = false;
+  let userId = null;
+
+  if (storedData){
+  const parsedData = JSON.parse(storedData);
+  userId = parsedData.data.userId;
+  loggedIn = true;
+  }
+
   return (
     <div>
 {loggedIn ? (
