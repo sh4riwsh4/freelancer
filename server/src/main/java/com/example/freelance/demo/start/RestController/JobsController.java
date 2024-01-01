@@ -20,11 +20,11 @@ public class JobsController {
     public List<Jobs> findAll(){
         return jobsService.findAll();
     }
-    @GetMapping("/ORTAK/jobs/active")
+    @GetMapping("/PUBLIC/jobs/active")
     public List<Jobs> findAllActive(){
         return jobsService.findAllActiveJobs();
     }
-    @GetMapping("/ORTAK/jobs/id/{jobsId}")
+    @GetMapping("/PUBLIC/jobs/id/{jobsId}")
     public Jobs findById(@PathVariable int jobsId){
         Jobs jobs=jobsService.findById(jobsId);
         return jobs;
