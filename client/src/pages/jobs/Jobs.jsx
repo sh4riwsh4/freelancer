@@ -4,7 +4,7 @@ import bookmark from './bookmark.png';
 import { Link } from 'react-router-dom';
 
 const Jobs = () => {
-  const DataFetchingComponent = () => {
+    const DataFetchingComponent = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -38,7 +38,9 @@ const Jobs = () => {
             <div className="job">
               <div className="left">
                 <div className="time">Paylaşılma Zamanı: {calculateDateDifference(new Date(item.createDate), currentDate)} gün önce</div>
-                <div className="name">{item.title}</div>
+                <Link to={`/job/${item.id}`}>
+                  <div className="name">{item.title}</div>
+                </Link>
                 <div className="description">{item.description}</div>
               </div>
               <div className="right">

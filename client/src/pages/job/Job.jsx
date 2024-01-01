@@ -2,14 +2,34 @@ import React from "react"
 import "./Job.scss"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
+import { useParams } from 'react-router-dom';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 
 const Job = () => {
+    const { jobId } = useParams();
+    const DataFetchingComponent = () => {
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+      fetchData();
+    }, []);
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/api/jobs/all');
+        const jsonData = await response.json();
+        setData(jsonData);
+      } catch (error) {
+        console.log('Veri çekme hatası:', error);
+      }
+    }
+
     return (
         <div className="job">
-          <div className="jobcont">
+          {data.map((item) => (
+          <div key={item.id} className="jobcont">
             <div className="left">
               <h1>I will create ai generated art for you</h1>
               <div className="user">
@@ -147,9 +167,10 @@ const Job = () => {
               </div>
               <button>Continue</button>
             </div>
-          </div>
+          </div>))}
         </div>
       );
+    }
 }
 
 export default Job
