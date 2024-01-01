@@ -43,7 +43,7 @@ function App() {
             element:<Home/>
             },
             {
-                path:"/job/:id",
+                path:"/job/:jobId/*",
                 element:<Job/>
             },
             {
