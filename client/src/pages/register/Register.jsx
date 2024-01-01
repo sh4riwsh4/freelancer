@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState, useEffect } from "react";
 import "./Register.scss";
 import axios from 'axios';
 
@@ -22,12 +22,19 @@ const Register = () => {
     firstName: "",
     lastName: "",
     identityNumber: "",
-    userName: "",
+    username: "",
     password: "",
     email: "",
-    authorities: chosenType,
+    authorities: [chosenType],
   });
-  
+
+  useEffect(() => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      authorities: [chosenType],
+    }));
+  }, [chosenType]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -39,26 +46,30 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Gönderilen Veriler: ", formData);
-    console.log(chosenType)
-    axios.post('http://localhost:8080/api/addNewUser', formData).then(response => {
-       console.log("Backend'den gelen cevap: ", response.data);
-     }).catch(error => {
-       console.error("Hata:", error);
-     });
-  setFormData({
-    firstName: "",
-    lastName: "",
-    identityNumber: "",
-    username: "",
-    password: "",
-    email: "",
-    authorities:chosenType
-  });
+
+    axios
+      .post('http://localhost:8080/api/addNewUser', formData)
+      .then((response) => {
+        console.log("Backend'den gelen cevap: ", response.data);
+      })
+      .catch((error) => {
+        console.error("Hata:", error);
+      });
+
+    setFormData({
+      firstName: "",
+      lastName: "",
+      identityNumber: "",
+      username: "",
+      password: "",
+      email: "",
+      authorities: [chosenType],
+    });
   };
 
   return (
     <div>
-      {chosenType === null && (
+      {chosenType === null ? (
         <div className="choose">
           <div className="top-section">
             <button
@@ -80,8 +91,7 @@ const Register = () => {
             </button>
           </div>
         </div>
-      )};
-
+      ) : (
       <div className="container d-flex justify-content-center align-items-center vh-100">
         <div className="card p-4">
           <h2 className="text-center mb-4">KAYIT OL</h2>
@@ -140,8 +150,8 @@ const Register = () => {
                 type="password"
                 className="form-control"
                 placeholder="Şifre"
-                name="password_key"
-                value={formData.password_key}
+                name="password"
+                value={formData.password}
                 onChange={handleChange}
                 required
               />
@@ -165,6 +175,7 @@ const Register = () => {
           </form>
         </div>
       </div>
+      )}
     </div>
   );
 };
