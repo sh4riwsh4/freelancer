@@ -10,7 +10,7 @@ const Add = () => {
   const [price, setPrice] = useState('');
   const [ilanResmi, setIlanResmi] = useState('');
   const [description, setDescription] = useState('');
-
+  const [deadline, setDeadline] = useState('');
   const handleIlanSubmit = async (e) => {
     e.preventDefault();
 
@@ -21,10 +21,11 @@ const Add = () => {
         title,
         price, // price alanı formData'ya eklendi
         description,
+        deadline
       };
 
       // Sunucuya POST isteği gönder
-      const response = await axios.post('http://localhost:8080/api/jobs', formData);
+      const response = await axios.post('http://localhost:8081/api/jobs', formData);
 
       console.log('İlan başarıyla oluşturuldu:', response.data);
 
@@ -33,6 +34,7 @@ const Add = () => {
       setPrice('');
       setIlanResmi('');
       setDescription('');
+      setDeadline("")
     } catch (error) {
       console.error('İlan oluşturma hatası:', error);
     }
@@ -51,7 +53,7 @@ const Add = () => {
   };
 
   return (
-    <div className="container my-4 w-75">
+    <div className="container  my-4 w-50">
       <h2>İlan Oluştur</h2>
       <Form onSubmit={handleIlanSubmit} autoComplete='off'>
         <Form.Group className="mb-3" controlId="formtitle">
@@ -73,6 +75,17 @@ const Add = () => {
             placeholder="Price Giriniz"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
+            required
+          />
+        </Form.Group>
+        
+        <Form.Group className="mb-3" controlId="formDeadline">
+          <Form.Label>Son Teslim Tarihi</Form.Label>
+          <Form.Control
+            type="date"
+            value={deadline}
+            onChange={(e) => setDeadline(e.target.value)}
+            min={new Date().toISOString().split('T')[0]} // Bugünden önceki tarih seçilemez
             required
           />
         </Form.Group>
