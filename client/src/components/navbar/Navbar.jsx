@@ -12,6 +12,15 @@ const Navbar = () => {
     window.scrollY > 0 ? setActive(true) : setActive(false)
   }
 
+  const storedData = localStorage.getItem('user');
+  let loggedIn = false;
+  let userId = null;
+  if (storedData){
+  const parsedData = JSON.parse(storedData);
+  userId = parsedData.data.userId;
+  loggedIn = true;
+  }
+
   useEffect(() =>{
     window.addEventListener("scroll", isActive);
 
@@ -22,7 +31,7 @@ const Navbar = () => {
 
   const currentUser= {
     id:1,
-    userName:'semih',
+    userName: userId ? null : "a",
     isSeller : true
   };
 
@@ -31,12 +40,12 @@ const Navbar = () => {
       <div className="container">
         <div className="logo">
           <Link to="/" className='link'>
-            <span className='text'>Name</span>
+            <span className='text'>YetenekAğı</span>
           </Link>
         </div>
         <div className="links">
           <Link className='link' to="/jobs">Aktif İlanlar</Link>
-          <Link className='link' to="/login">Giriş Yap</Link>
+          {userId ? null : <Link className="link" to="/login">Giriş Yap</Link>}
           {!currentUser?.isSeller && <Link className='link' to="/register">Kayıt Ol</Link>}
           {currentUser && (
             <div className="user" onClick={()=>setOpen(!open)}>

@@ -25,7 +25,6 @@ public class OfferServiceImpl implements OfferService {
         Offers offers = offerRepository.findById(offerId);
         offers.setOfferStatus(OfferStatus.accepted);
         offerRepository.save(offers);
-
     }
 
     @Override

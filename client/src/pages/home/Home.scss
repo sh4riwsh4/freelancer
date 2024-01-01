@@ -2,14 +2,26 @@
 font-size: 20px;
 font-weight: normal;
 }
+
 .product-card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     max-width: 300px;
     text-align:left;
     font-family: arial;
   }
+
+  .product-title {
+    font-size: 16px; /* İstenilen boyutu buraya yazın */
+    font-weight: bold;
+    padding-left: 10px; /* Sol padding değeri */
+    padding-right: 10px; /* Sağ padding değeri */
+  }
+
   .product-body{
     margin-left: 5px;
+    font-size: 14px; 
+    padding-left: 10px; /* Sol padding değeri */
+    padding-right: 10px; /* Sağ padding değeri */
   }
     .product-name {
         display: flex;
@@ -32,6 +44,8 @@ font-weight: normal;
   .price {
     color: grey;
     font-size: 22px;
+    padding-right: 10px; /* Sağ padding değeri */
+    padding-bottom: 10px;
   }
   
   .product-card button {

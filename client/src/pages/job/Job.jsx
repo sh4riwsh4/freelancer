@@ -23,7 +23,6 @@ const DataFetchingComponent = () => {
       console.log('Veri çekme hatası:', error);
     }
   };
-  console.log(data)
 
   return (
     <div className="job">

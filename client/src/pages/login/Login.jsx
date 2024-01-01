@@ -1,14 +1,17 @@
-import React,{useState} from "react"
-import "./Login.scss"
+import React, { useState } from "react";
+import "./Login.scss";
+import axios from "axios"; // axios'u import et
 
-
-import { Link } from 'react-router-dom'; // react-router-dom'dan Link import edin
+import { Link, useNavigate} from 'react-router-dom';
 
 const Login = () => {
+
   const [formData, setFormData] = useState({
     username: '',
     password: '',
   });
+
+  const history = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,16 +23,20 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Form verilerini formData state'inden al ve burada backend'e gönderme işlemini gerçekleştir
     console.log('Gönderilen Veriler: ', formData);
-    // Backend ile iletişim kurmak için axios gibi bir kütüphane kullanılabilir
-    // axios.post('backend_url', formData).then(response => {
-    //   console.log('Backend\'den gelen cevap: ', response.data);
-    // }).catch(error => {
-    //   console.error('Hata:', error);
-    // });
+    
+    axios.post('http://localhost:8080/api/login', formData)
+      .then(response => {
+        console.log('Backend\'den gelen cevap: ', response.data);
+        if (response.data) {
+          localStorage.setItem('user', JSON.stringify(response))
+          history("/");
+        }
+      })
+      .catch(error => {
+        console.error('Hata:', error);
+      });
 
-    // Form gönderildikten sonra input değerlerini sıfırla
     setFormData({
       username: '',
       password: '',
