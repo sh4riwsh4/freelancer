@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import './Add.scss';
 import axios from 'axios';
-
-
+import Error from '../error/Error';
 
 const Add = () => {
   const [title, setTitle] = useState('');
@@ -11,27 +10,40 @@ const Add = () => {
   const [ilanResmi, setIlanResmi] = useState('');
   const [description, setDescription] = useState('');
   const [deadline, setDeadline] = useState('');
+  let loggedIn = false;
   const handleIlanSubmit = async (e) => {
     e.preventDefault();
+
+    const storedData = localStorage.getItem('user');
+    let myToken = null;
+    let userN = null;
+  
+    if (storedData){
+    const parsedData = JSON.parse(storedData);
+    myToken = parsedData.data.accessToken;
+    userN = parsedData.data.userId;
+    loggedIn = true;
+    }
 
     try {
       // Sunucuya gönderilecek olan obje
       const formData = {
         //ilanResmi,
-        title:"MLPROJECTS",
-        description :"qwhqhsehshsd çekilmiş servislenmiş bir ml projesi",
-        price: 50,
-        //deadline,
-        //username : "smh"
+        title,
+        description,
+        active: 1,
+        price: parseInt(price),
+        deadline,
+        userName : userN,
       };
 
       console.log("Gönderilen Veriler: ", formData);
 
       // Sunucuya POST isteği gönder
       const response = await axios.post('http://localhost:8080/api/ISVEREN/jobs', formData, {
-      headers: {
-        Authorization: 'Bearer {eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZWUiLCJpYXQiOjE3MDQyMjI5NzAsImV4cCI6MTcwNDIyNDE3MH0.o5yimiom4rqNhmjCDWIUkrCpRK5oa7nVu49PdDjcSOQ}',
-      },
+        headers: {
+          Authorization: myToken,
+        },
       });
       console.log('İlan başarıyla oluşturuldu:', response.data);
     
@@ -59,69 +71,79 @@ const Add = () => {
   };
 
   return (
-    <div className="container  my-4 w-50">
-      <h2>İlan Oluştur</h2>
-      <Form onSubmit={handleIlanSubmit} autoComplete='off'>
-        <Form.Group className="mb-3" controlId="formtitle">
-          <Form.Label>İlan Başlığı</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="İlan Başlığı Giriniz"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-        </Form.Group>
+    <div>
+      {loggedIn ? (
+          <div className="container  my-4 w-50">
+          <h2>İlan Oluştur</h2>
+          <Form onSubmit={handleIlanSubmit} autoComplete='off'>
+            <Form.Group className="mb-3" controlId="formtitle">
+              <Form.Label>İlan Başlığı</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="İlan Başlığı Giriniz"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                required
+              />
+            </Form.Group>
 
-        {/* Yeni price alanı */}
-        <Form.Group className="mb-3" controlId="formPrice">
-          <Form.Label>Price</Form.Label>
-          <Form.Control
-            type="number"
-            placeholder="Price Giriniz"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            required
-          />
-        </Form.Group>
-        
-        <Form.Group className="mb-3" controlId="formDeadline">
-          <Form.Label>Son Teslim Tarihi</Form.Label>
-          <Form.Control
-            type="date"
-            value={deadline}
-            onChange={(e) => setDeadline(e.target.value)}
-            min={new Date().toISOString().split('T')[0]} // Bugünden önceki tarih seçilemez
-            required
-          />
-        </Form.Group>
+            {/* Yeni price alanı */}
+            <Form.Group className="mb-3" controlId="formPrice">
+              <Form.Label>Price</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="Price Giriniz"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                required
+              />
+            </Form.Group>
+            
+            <Form.Group className="mb-3" controlId="formDeadline">
+              <Form.Label>Son Teslim Tarihi</Form.Label>
+              <Form.Control
+                type="date"
+                value={deadline}
+                onChange={(e) => setDeadline(e.target.value)}
+                min={new Date().toISOString().split('T')[0]} // Bugünden önceki tarih seçilemez
+                required
+              />
+            </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formIlanResmi">
-          <Form.Label>İlan Resmi</Form.Label>
-          <Form.Control
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange}
-            required
-          />
-        </Form.Group>
+            <Form.Group className="mb-3" controlId="formIlanResmi">
+              <Form.Label>İlan Resmi</Form.Label>
+              <Form.Control
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                required
+              />
+            </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formdescription">
-          <Form.Label>İlan Açıklaması</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={4}
-            placeholder="İlan Açıklamasını Giriniz"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-        </Form.Group>
+            <Form.Group className="mb-3" controlId="formdescription">
+              <Form.Label>İlan Açıklaması</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={4}
+                placeholder="İlan Açıklamasını Giriniz"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                required
+              />
+            </Form.Group>
 
-        <Button variant="primary mb-2" type="submit">
-          İlanı Yayınla
-        </Button>
-      </Form>
+            <Button variant="primary mb-2" type="submit">
+              İlanı Yayınla
+            </Button>
+          </Form>
+        </div>
+        )
+        : 
+        (
+          <div className="notlogged">
+          <Error/>
+        </div>
+        )}
     </div>
   );
 };

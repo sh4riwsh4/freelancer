@@ -13,13 +13,13 @@ const DataFetchingComponent = () => {
     const fetchData = async () => {
       try {
         const response1 = await fetch(`http://localhost:8080/api/PUBLIC/jobs/user/işçi02`);
-        const jsonData2 = await response.json();
+        const jsonData1 = await response1.json();
+        setData(jsonData1);
+    
+        const response2 = await fetch(`http://localhost:8080/api/PUBLIC/jobs/user/işçi02`);
+        const jsonData2 = await response2.json();
         setData(jsonData2);
-
-        const response = await fetch(`http://localhost:8080/api/PUBLIC/jobs/user/işçi02`);
-        const jsonData = await response.json();
-        setData(jsonData);
-
+    
       } catch (error) {
         console.log('Veri çekme hatası:', error);
       }

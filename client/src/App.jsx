@@ -11,7 +11,8 @@ import Orders from "./pages/orders/Orders";
 import MyJobs from "./pages/myJobs/MyJobs";
 import Profile from "./pages/profile/Profile";
 import Login from './pages/login/Login';
-import Register from './pages/register/Register'
+import Register from './pages/register/Register';
+import Error from "./pages/error/Error";
 import './App.scss'
 
 
@@ -73,7 +74,7 @@ function App() {
             {
                 path:"/profile",
                 element:<Profile/>
-            },               
+            },     
         ]
         },
         {
@@ -83,6 +84,10 @@ function App() {
         {
             path:"/register",
             element:<Register/>
+        },  
+        {
+            path:"*",
+            element:<Error/>
         },
       ]);
     

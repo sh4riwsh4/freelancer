@@ -1,9 +1,20 @@
 import React from "react"
 import "./Messages.scss"
+import Error from "../error/Error"
 
 const Messages = () => {
+    const storedData = localStorage.getItem('user');
+    let loggedIn = false;
+  
+    if (storedData){
+    const parsedData = JSON.parse(storedData);
+    loggedIn = true;
+    }
+
     return (
-        <div className="messages">
+    <div>
+        {loggedIn ?(
+            <div className="messages">
             <div className="left">
                 <div className="box">
                     <div className="box-left">
@@ -146,6 +157,13 @@ const Messages = () => {
                 </div>
             </div>
         </div>
+        ):(
+            <div>
+                <Error/>
+            </div>
+        )
+        }
+    </div>
     )
 }
 

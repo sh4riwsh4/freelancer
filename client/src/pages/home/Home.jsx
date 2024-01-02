@@ -37,40 +37,41 @@ const DataFetchingComponent = () => {
     <div>
   {loggedIn ? (
   <div className="loggedInDiv">
-    {/* LoggedIn durumunda gösterilecek içerik */}
-    <div className="container">
-      <h1>İlan Listesi</h1>
-      <div className="row justify-content-center">
-        {data.map((item) => (
-          <div key={item.id} className="col-6 col-md-6 col-lg-3">
-            <div className="product-card">
+  {/* LoggedIn durumunda gösterilecek içerik */}
+  <div className="container">
+    <h1 style={{ margin: "10px" }}>İlanları Keşfet</h1>
+    <hr />
+    <div className="row justify-content-between">
+      {data.map((item) => (
+        <div key={item.id} className="col-6 col-md-6 col-lg-3 mb-4">
+          <div className="product-card" style={{ height: "480px" }}>
+            <img
+              className="img-top"
+              src={photo1}
+              alt="Denim Jeans"
+              style={{ width: "100%" }}
+            />
+            <div className="product-name">
               <img
-                className="img-top"
-                src={photo1}
-                alt="Denim Jeans"
-                style={{ width: "100%" }}
+                className="rounded-circle profil-photo"
+                src={photo2}
+                alt=""
               />
-              <div className="product-name">
-                <img
-                  className="rounded-circle profil-photo"
-                  src={photo2}
-                  alt=""
-                />
-                <span>{item.user.firstName} {item.user.lastName}</span>
-              </div>
-              <Link className="link" to={`/job/${item.id}`}>
-                <h1 className="product-title">{item.title}</h1>
-              </Link>
-              <div className="product-body">
-                <p>{item.description}</p>
-                <p className="price">{item.price} TL</p>
-              </div>
+              <span>{item.user.firstName} {item.user.lastName}</span>
+            </div>
+            <Link className="link" to={`/job/${item.id}`}>
+              <h1 className="product-title">{item.title}</h1>
+            </Link>
+            <div className="product-body">
+              <p>{item.description}</p>
+              <p className="price">{item.price} TL</p>
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   </div>
+</div>
 )  :
       (
         <div className="Home">

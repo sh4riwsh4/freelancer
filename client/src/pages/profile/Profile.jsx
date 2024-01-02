@@ -1,7 +1,15 @@
 import React from "react"
 import "./Profile.scss"
+import Error from "../error/Error";
 
 const Profile = () => {
+    const storedData = localStorage.getItem('user');
+    let loggedIn = false;
+  
+    if (storedData){
+    const parsedData = JSON.parse(storedData);
+    loggedIn = true;
+    }
 
     const currentUser= {
         id:1,
@@ -20,49 +28,55 @@ const Profile = () => {
       };
 
     return (
-        <div className="profile">
-            <div className="left">
-                <div className="top">
-                    <div className="top-left">
-                        <img className= 'pic' src={currentUser?.photo} alt="User Profile Picture" />
+        <div>
+            {loggedIn ? (
+                <div className="profile">
+                    <div className="left">
+                        <div className="top">
+                            <div className="top-left">
+                                <img className= 'pic' src={currentUser?.photo} alt="User Profile Picture" />
+                            </div>
+                            <div className="top-right">
+                                <div className="text">
+                                    <div className="name"><b>İsim Soyisim: </b>{currentUser?.name} {currentUser?.surname}</div>
+                                    <div className="age"><b>Yaş:</b> {currentUser?.age}</div>
+                                    <div className="jobtext"><b>Meslek: </b>{currentUser?.job}</div>
+                                    <div className="star"><b>Kullanıcı Puanları:</b> {currentUser?.userReviews}★</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="mid">
+                            <div className="skills">
+                                <div className="skills-title"><b>Beceriler ve Yetenekler:</b></div>
+                                <div className="skills">Belirtilmedi.</div>
+                                <div className="chosen-skills"></div>
+                                <div className="biography-title"><b>Hakkımda:</b></div>
+                                <div className="biography">{currentUser?.biography}</div>
+                            </div>
+                        </div>
+                        <div className="bot">
+                            <div className="education"><b>Eğitim:</b> {currentUser?.education}</div>
+                            <div className="location"><b>Konum:</b> {currentUser?.location}</div>
+                        </div>
                     </div>
-                    <div className="top-right">
-                        <div className="text">
-                            <div className="name"><b>İsim Soyisim: </b>{currentUser?.name} {currentUser?.surname}</div>
-                            <div className="age"><b>Yaş:</b> {currentUser?.age}</div>
-                            <div className="jobtext"><b>Meslek: </b>{currentUser?.job}</div>
-                            <div className="star"><b>Kullanıcı Puanları:</b> {currentUser?.userReviews}★</div>
+                    <div className="right">
+                        <div className="portfolio">
+                            <div className="title">Portfolyo</div>
+                            <div className="content"></div>
+                        </div>
+                        <div className="reviews">
+                            <div className="title">Kullanıcı Yorumları</div>
+                            <div className="content"></div>
+                        </div>
+                        <div className="certificaties">
+                            <div className="title">Sertifikalar</div>
+                            <div className="content"></div>
                         </div>
                     </div>
                 </div>
-                <div className="mid">
-                    <div className="skills">
-                        <div className="skills-title"><b>Beceriler ve Yetenekler:</b></div>
-                        <div className="skills">Belirtilmedi.</div>
-                        <div className="chosen-skills"></div>
-                        <div className="biography-title"><b>Hakkımda:</b></div>
-                        <div className="biography">{currentUser?.biography}</div>
-                    </div>
-                </div>
-                <div className="bot">
-                    <div className="education"><b>Eğitim:</b> {currentUser?.education}</div>
-                    <div className="location"><b>Konum:</b> {currentUser?.location}</div>
-                </div>
-            </div>
-            <div className="right">
-                <div className="portfolio">
-                    <div className="title">Portfolyo</div>
-                    <div className="content"></div>
-                </div>
-                <div className="reviews">
-                    <div className="title">Kullanıcı Yorumları</div>
-                    <div className="content"></div>
-                </div>
-                <div className="certificaties">
-                    <div className="title">Sertifikalar</div>
-                    <div className="content"></div>
-                </div>
-            </div>
+            ) : (
+                <Error/>
+            )}
         </div>
     )
 }
