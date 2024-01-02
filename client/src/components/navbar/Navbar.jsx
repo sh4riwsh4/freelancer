@@ -22,11 +22,15 @@ const Navbar = () => {
   loggedIn = true;
   }
 
+  const handleRefresh = () => {
+    window.location.reload();
+  };
+
   const handleLogout = () => {
     loggedIn = false;
     userId = null;
     localStorage.clear();
-    console.log("logged out")
+    handleRefresh();
   };
 
   useEffect(() =>{
@@ -40,7 +44,7 @@ const Navbar = () => {
   const currentUser= {
     id:1,
     userName: userId ? userId : "a",
-    isSeller : false
+    isSeller : true
   };
 
   return (

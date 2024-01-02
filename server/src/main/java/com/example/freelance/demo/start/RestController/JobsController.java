@@ -36,12 +36,12 @@ public class JobsController {
         return jobsService.getUserJobs(userName);
     }
 
-    @PostMapping("/PUBLIC/jobs")
+    @PostMapping("/ISVEREN/jobs")
     public Jobs addJobs(@RequestBody Jobs jobs){
         jobs.setId(0);
         return jobsService.save(jobs);
     }
-    @PutMapping("/ISVEREN/jobs")
+    @PutMapping("/ISVEREN/update/jobs")
     public Jobs updateJobs(@RequestBody Jobs jobs){return jobsService.save(jobs);}
     @DeleteMapping("/ORTAK/jobs/{jobsId}")
     public  void deleteUser(@PathVariable int jobsId){

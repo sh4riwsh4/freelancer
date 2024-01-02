@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,9 +45,15 @@ public class UserRestController {
         return user;
     }
     @GetMapping("PUBLIC/users/firstName/{firstName}")
-    public User getByUserName(@PathVariable String firstName){
+    public User getByFirstName(@PathVariable String firstName){
         return userService.getUserByFirstName(firstName);
     }
+
+    @GetMapping("PUBLIC/users/username/{username}")
+    public UserDetails loadByUserName(@PathVariable String username){
+        return userService.loadUserByUsername(username);
+    }
+
 
     @PutMapping("/ORTAK/users")
     public User updateUser(@RequestBody User user){return userService.save(user);}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import "./MyJobs.scss"
 import {Link} from "react-router-dom"
 import deleteImg from "./delete.svg"
+import Error from "../error/Error"
 
 const DataFetchingComponent = () => {
     const [data, setData] = useState([]);
@@ -70,7 +71,7 @@ const DataFetchingComponent = () => {
         </div>
       ) : (
         <div className="notlogged">
-          
+          <Error/>
         </div>
       )}
       </div>

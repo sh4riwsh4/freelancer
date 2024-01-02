@@ -17,18 +17,24 @@ const Add = () => {
     try {
       // Sunucuya gönderilecek olan obje
       const formData = {
-        ilanResmi,
-        title,
-        price, // price alanı formData'ya eklendi
-        description,
-        deadline
+        //ilanResmi,
+        title:"MLPROJECTS",
+        description :"qwhqhsehshsd çekilmiş servislenmiş bir ml projesi",
+        price: 50,
+        //deadline,
+        //username : "smh"
       };
 
+      console.log("Gönderilen Veriler: ", formData);
+
       // Sunucuya POST isteği gönder
-      const response = await axios.post('http://localhost:8081/api/jobs', formData);
-
+      const response = await axios.post('http://localhost:8080/api/ISVEREN/jobs', formData, {
+      headers: {
+        Authorization: 'Bearer {eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZWUiLCJpYXQiOjE3MDQyMjI5NzAsImV4cCI6MTcwNDIyNDE3MH0.o5yimiom4rqNhmjCDWIUkrCpRK5oa7nVu49PdDjcSOQ}',
+      },
+      });
       console.log('İlan başarıyla oluşturuldu:', response.data);
-
+    
       // Form alanlarını sıfırla
       setTitle('');
       setPrice('');
