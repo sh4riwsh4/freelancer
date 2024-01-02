@@ -33,6 +33,7 @@ public class User implements UserDetails {
     @Column(name = "wallet")
     private int wallet;
     private String identityNumber;
+    private int age;
 
     private boolean accountNonExpired;
     private boolean isEnabled;
@@ -44,5 +45,9 @@ public class User implements UserDetails {
     @Column(name = "role", nullable = false)
     @Enumerated(EnumType.STRING)
     private Set<Role> authorities;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private UserProfile userProfile;
+
 
 }

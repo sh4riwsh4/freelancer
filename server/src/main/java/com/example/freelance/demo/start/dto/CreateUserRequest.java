@@ -14,6 +14,7 @@ public record CreateUserRequest(
         String password,
         String location,
         int wallet,
+        int age,
         String identityNumber,
         Set<Role> authorities
 

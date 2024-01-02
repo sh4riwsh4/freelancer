@@ -13,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,25 +34,20 @@ public class UserRestController {
         this.authenticationManager = authenticationManager;
     }
 
-    @GetMapping("PUBLIC/users")
+
+    @GetMapping("/users")
     public List<User> findAll(){
         return userService.findAll();
     }
-    @GetMapping("PUBLIC/users/id/{usersId}")
+    @GetMapping("/users/id/{usersId}")
     public User findById(@PathVariable int usersId){
         User user=userService.findById(usersId);
         return user;
     }
-    @GetMapping("PUBLIC/users/firstName/{firstName}")
-    public User getByFirstName(@PathVariable String firstName){
+    @GetMapping("/users/firstName/{firstName}")
+    public User getByUserName(@PathVariable String firstName){
         return userService.getUserByFirstName(firstName);
     }
-
-    @GetMapping("PUBLIC/users/username/{username}")
-    public UserDetails loadByUserName(@PathVariable String username){
-        return userService.loadUserByUsername(username);
-    }
-
 
     @PutMapping("/ORTAK/users")
     public User updateUser(@RequestBody User user){return userService.save(user);}
@@ -73,7 +67,7 @@ public class UserRestController {
         return "hello welcome";
     }
     @PostMapping("/PUBLIC/addNewUser")
-    public User addUser(@RequestBody CreateUserRequest request){
+    public ResponseEntity<String> addUser(@RequestBody CreateUserRequest request) throws Exception {
         return  userService.createUser(request);
     }
 

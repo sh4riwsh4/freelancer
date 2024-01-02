@@ -50,9 +50,9 @@ const Jobs = () => {
     return (
         <div className="jobs">
       <div className="job-container">
-        <h1>AI Artists</h1>
+        <h1>Aktif İlanlar</h1>
         <p>
-          Explore the boundaries of art and technology with Liverrs AI artists
+          Yeteneğine en uygun işe başvur ve kazanmaya başla!
         </p>
         <div className="job-cards">
           {data.map((card) => (

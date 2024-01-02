@@ -2,16 +2,15 @@
     width: 100%;
     display: flex;
     justify-content: center;
-  
+    min-height: 482px;
+
     .job-container {
       width: 1400px;
       padding: 30px 0px;
       display: flex;
       flex-direction: column;
       gap: 15px;
-  
-      h1 {
-      }
+
   
       p {
         color: #999;

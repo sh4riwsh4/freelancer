@@ -42,9 +42,6 @@ public class SecurityConfig {
                         x.requestMatchers( "/api/PUBLIC/**").permitAll()
                 )
                 .authorizeHttpRequests(x ->
-                        x.requestMatchers( "/api/ORTAK/**").hasAnyRole("ISALAN", "ISVEREN")
-                )
-                .authorizeHttpRequests(x ->
                         x.requestMatchers("/api/ISALAN/**").hasRole("ISALAN")
                                 .requestMatchers("/api/ISVEREN/**").hasRole("ISVEREN")
                 )

@@ -3,7 +3,6 @@ package com.example.freelance.demo.start.RestController;
 import com.example.freelance.demo.start.entitiy.Jobs;
 import com.example.freelance.demo.start.entitiy.User;
 import com.example.freelance.demo.start.service.abstracts.JobsService;
-import jakarta.persistence.StoredProcedureQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,23 +24,17 @@ public class JobsController {
     public List<Jobs> findAllActive(){
         return jobsService.findAllActiveJobs();
     }
-    @GetMapping("/PUBLIC/jobs/id/{jobsId}")
+    @GetMapping("/ORTAK/jobs/id/{jobsId}")
     public Jobs findById(@PathVariable int jobsId){
         Jobs jobs=jobsService.findById(jobsId);
         return jobs;
     }
-
-    @GetMapping("/PUBLIC/jobs/user/{userName}")
-    public List<Jobs> getUserJobs(@PathVariable String userName) {
-        return jobsService.getUserJobs(userName);
-    }
-
     @PostMapping("/ISVEREN/jobs")
     public Jobs addJobs(@RequestBody Jobs jobs){
         jobs.setId(0);
         return jobsService.save(jobs);
     }
-    @PutMapping("/ISVEREN/update/jobs")
+    @PutMapping("/ISVEREN/jobs")
     public Jobs updateJobs(@RequestBody Jobs jobs){return jobsService.save(jobs);}
     @DeleteMapping("/ORTAK/jobs/{jobsId}")
     public  void deleteUser(@PathVariable int jobsId){
