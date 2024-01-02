@@ -25,6 +25,7 @@ const Register = () => {
     username: "",
     password: "",
     email: "",
+    age: "", // Yaş alanı eklendi
     authorities: [chosenType],
   });
 
@@ -63,6 +64,7 @@ const Register = () => {
       username: "",
       password: "",
       email: "",
+      age: "", // Yaş alanı sıfırlanacak
       authorities: [chosenType],
     });
   };
@@ -115,7 +117,7 @@ const Register = () => {
                   placeholder="Soyad"
                   name="lastName"
                   value={formData.lastName}
-                 onChange={handleChange}
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -153,7 +155,7 @@ const Register = () => {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                required
+                required 
               />
             </div>
             <div className="mb-2">
@@ -166,6 +168,23 @@ const Register = () => {
                 onChange={handleChange}
                 required
               />
+            </div>
+            <div className="mb-2">
+            <input type="number"
+              className="form-control"
+              placeholder="Doğum Yılı"
+              name="age" 
+              value={formData.age} 
+              onChange={handleChange} 
+              required 
+              min= {1960}
+              max= {2020}
+              onKeyDown={(e) => {
+                if (![46, 8, 9, 27, 13, 110, 190].includes(e.keyCode)) {
+                  e.preventDefault();
+                }
+              }}
+            />
             </div>
             <div className="d-grid">
               <button type="submit" className="btn btn-success">
