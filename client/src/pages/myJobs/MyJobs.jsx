@@ -11,16 +11,33 @@ const DataFetchingComponent = () => {
   
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:8080/api/jobs/user/işçi02`);
+        const response1 = await fetch(`http://localhost:8080/api/PUBLIC/jobs/user/işçi02`);
+        const jsonData2 = await response.json();
+        setData(jsonData2);
+
+        const response = await fetch(`http://localhost:8080/api/PUBLIC/jobs/user/işçi02`);
         const jsonData = await response.json();
         setData(jsonData);
+
       } catch (error) {
         console.log('Veri çekme hatası:', error);
       }
     };
-    console.log(data)
+   
+    const storedData = localStorage.getItem('user');
+    let loggedIn = false;
+    let userId = null;
+
+    if (storedData){
+    const parsedData = JSON.parse(storedData);
+    userId = parsedData.data.userId;
+    loggedIn = true;
+    }
+
     return (
-        <div className="myjobs">
+      <div>
+        {loggedIn ? (
+          <div className="myjobs">
             <div className="myjobs-container">
                 <div className="myjobs-title">
                     <h1>İşlerim</h1>
@@ -51,6 +68,12 @@ const DataFetchingComponent = () => {
                 </table>
             </div>
         </div>
+      ) : (
+        <div className="notlogged">
+          
+        </div>
+      )}
+      </div>
     )
 }
 

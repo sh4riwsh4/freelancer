@@ -40,7 +40,7 @@ const Navbar = () => {
   const currentUser= {
     id:1,
     userName: userId ? userId : "a",
-    isSeller : true
+    isSeller : false
   };
 
   return (
@@ -65,13 +65,16 @@ const Navbar = () => {
               <span>{currentUser?.userName}</span>
               {open && <div className="options">
                 <Link className='link' to="/profile">Profilim</Link>
-                {currentUser?.isSeller && (
+                {currentUser?.isSeller ? (
                   <>
-                    <Link className='link' to="/myjobs">İşlerim</Link>
+                    <Link className='link' to="/myjobs">Oluşturulan İşler</Link>
                     <Link className='link' to="/add">Yeni İş Oluştur</Link>
                   </>
+                ):(
+                  <>
+                    <Link className='link' to="/orders">Aldığım İşler</Link>
+                  </> 
                 )}
-                <Link className='link' to="/orders">Siparişlerim</Link>
                 <Link className='link' to="/messages">Mesajlar</Link>
                 <Link className='link' to="/" onClick={handleLogout}>Çıkış Yap</Link>
               </div>}

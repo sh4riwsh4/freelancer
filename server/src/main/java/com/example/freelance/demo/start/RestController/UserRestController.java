@@ -34,17 +34,16 @@ public class UserRestController {
         this.authenticationManager = authenticationManager;
     }
 
-
-    @GetMapping("/users")
+    @GetMapping("PUBLIC/users")
     public List<User> findAll(){
         return userService.findAll();
     }
-    @GetMapping("/users/id/{usersId}")
+    @GetMapping("PUBLIC/users/id/{usersId}")
     public User findById(@PathVariable int usersId){
         User user=userService.findById(usersId);
         return user;
     }
-    @GetMapping("/users/firstName/{firstName}")
+    @GetMapping("PUBLIC/users/firstName/{firstName}")
     public User getByUserName(@PathVariable String firstName){
         return userService.getUserByFirstName(firstName);
     }
