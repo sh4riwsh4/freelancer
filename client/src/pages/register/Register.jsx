@@ -18,6 +18,8 @@ const Register = () => {
     }
   };
 
+  let age = null;
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -25,7 +27,7 @@ const Register = () => {
     username: "",
     password: "",
     email: "",
-    age: "", // Yaş alanı eklendi
+    age: parseInt(age),
     authorities: [chosenType],
   });
 

@@ -11,7 +11,7 @@ package com.example.freelance.demo.start.mernis;
 // To use it in commercial project, you need to generate this class again with Premium account.
 // Check https://EasyWsdl.com/Payment/PremiumAccountDetails to see all benefits of Premium account.
 //
-// Licence: EA6CF574096D028B7C0CB4F319D24E36AB031D06A2A0AAE996BD2E40AC5517B697D2CE62400BB69DF8DDD92FE894EE072790108B038DE08A5A65830516EF93FA
+// Licence: 4A180746F817E7A68E8D194530E8EFBED2967114260B5BED6280E0FA65F276299502872A7BDF84333D4CA4CE8161AD4B7B6D5B9C39B1EE19154A40F0AF0409DA
 //------------------------------------------------------------------------
 
 import org.ksoap2.serialization.Marshal;
@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 
-public class FNKMarshalGuid implements Marshal
+public class RHOMarshalGuid implements Marshal
 {
     public java.lang.Object readInstance(XmlPullParser parser, java.lang.String namespace, java.lang.String name,PropertyInfo expected) throws IOException, XmlPullParserException
     {

@@ -11,7 +11,7 @@ package com.example.freelance.demo.start.mernis;
 // To use it in commercial project, you need to generate this class again with Premium account.
 // Check https://EasyWsdl.com/Payment/PremiumAccountDetails to see all benefits of Premium account.
 //
-// Licence: EA6CF574096D028B7C0CB4F319D24E36AB031D06A2A0AAE996BD2E40AC5517B697D2CE62400BB69DF8DDD92FE894EE072790108B038DE08A5A65830516EF93FA
+// Licence: 4A180746F817E7A68E8D194530E8EFBED2967114260B5BED6280E0FA65F276299502872A7BDF84333D4CA4CE8161AD4B7B6D5B9C39B1EE19154A40F0AF0409DA
 //------------------------------------------------------------------------
 
 
@@ -26,13 +26,13 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class FNKKPSPublicSoap
+public class RHOKPSPublicSoap12
 {
-    interface FNKIWcfMethod
+    interface RHOIWcfMethod
     {
-        FNKExtendedSoapSerializationEnvelope CreateSoapEnvelope() throws java.lang.Exception;
+        RHOExtendedSoapSerializationEnvelope CreateSoapEnvelope() throws java.lang.Exception;
 
-        java.lang.Object ProcessResult(FNKExtendedSoapSerializationEnvelope __envelope,java.lang.Object result) throws java.lang.Exception;
+        java.lang.Object ProcessResult(RHOExtendedSoapSerializationEnvelope __envelope,java.lang.Object result) throws java.lang.Exception;
     }
 
     String url="https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx";
@@ -44,14 +44,14 @@ public class FNKKPSPublicSoap
     public boolean createClassesForAny = false;
 
 
-    public FNKKPSPublicSoap(){}
+    public RHOKPSPublicSoap12(){}
 
-    public FNKKPSPublicSoap(String url)
+    public RHOKPSPublicSoap12(String url)
     {
         this.url = url;
     }
 
-    public FNKKPSPublicSoap(String url,int timeOut)
+    public RHOKPSPublicSoap12(String url,int timeOut)
     {
         this.url = url;
         this.timeOut=timeOut;
@@ -84,16 +84,16 @@ public class FNKKPSPublicSoap
         return null;
     }
 
-    protected FNKExtendedSoapSerializationEnvelope createEnvelope()
+    protected RHOExtendedSoapSerializationEnvelope createEnvelope()
     {
-        FNKExtendedSoapSerializationEnvelope envelope= new FNKExtendedSoapSerializationEnvelope(FNKExtendedSoapSerializationEnvelope.VER11);
+        RHOExtendedSoapSerializationEnvelope envelope= new RHOExtendedSoapSerializationEnvelope(RHOExtendedSoapSerializationEnvelope.VER12);
         envelope.enableLogging = enableLogging;
         envelope.createClassesForAny = createClassesForAny;
     
         return envelope;
     }
 
-    protected java.util.List sendRequest(String methodName,FNKExtendedSoapSerializationEnvelope envelope,org.ksoap2.transport.Transport transport ,com.easywsdl.exksoap2.ws_specifications.profile.WS_Profile profile )throws java.lang.Exception
+    protected java.util.List sendRequest(String methodName,RHOExtendedSoapSerializationEnvelope envelope,org.ksoap2.transport.Transport transport ,com.easywsdl.exksoap2.ws_specifications.profile.WS_Profile profile )throws java.lang.Exception
     {
         if(transport instanceof com.easywsdl.exksoap2.transport.AdvancedHttpTransportSE )
         {
@@ -105,7 +105,7 @@ public class FNKKPSPublicSoap
         }
     }
 
-    java.lang.Object getResult(java.lang.Class destObj,java.lang.Object source,String resultName,FNKExtendedSoapSerializationEnvelope __envelope) throws java.lang.Exception
+    java.lang.Object getResult(java.lang.Class destObj,java.lang.Object source,String resultName,RHOExtendedSoapSerializationEnvelope __envelope) throws java.lang.Exception
     {
         if(source==null)
         {
@@ -147,11 +147,11 @@ public class FNKKPSPublicSoap
     public Boolean TCKimlikNoDogrula(final Long TCKimlikNo,final String Ad,final String Soyad,final Integer DogumYili) throws java.lang.Exception
     {
         com.easywsdl.exksoap2.ws_specifications.profile.WS_Profile __profile = new com.easywsdl.exksoap2.ws_specifications.profile.WS_Profile();
-        return (Boolean)execute(new FNKIWcfMethod()
+        return (Boolean)execute(new RHOIWcfMethod()
         {
             @Override
-            public FNKExtendedSoapSerializationEnvelope CreateSoapEnvelope(){
-                FNKExtendedSoapSerializationEnvelope __envelope = createEnvelope();
+            public RHOExtendedSoapSerializationEnvelope CreateSoapEnvelope(){
+                RHOExtendedSoapSerializationEnvelope __envelope = createEnvelope();
                 SoapObject __soapReq = new SoapObject("http://tckimlik.nvi.gov.tr/WS", "TCKimlikNoDogrula");
                 __envelope.setOutputSoapObject(__soapReq);
                 
@@ -184,7 +184,7 @@ public class FNKKPSPublicSoap
             }
             
             @Override
-            public java.lang.Object ProcessResult(FNKExtendedSoapSerializationEnvelope __envelope,java.lang.Object __result)throws java.lang.Exception {
+            public java.lang.Object ProcessResult(RHOExtendedSoapSerializationEnvelope __envelope,java.lang.Object __result)throws java.lang.Exception {
                 SoapObject __soap=(SoapObject)__result;
                 java.lang.Object obj = __soap.getProperty("TCKimlikNoDogrulaResult");        
                 if (obj instanceof SoapPrimitive)
@@ -200,11 +200,11 @@ public class FNKKPSPublicSoap
         },"http://tckimlik.nvi.gov.tr/WS/TCKimlikNoDogrula",__profile);
     }
 
-    protected java.lang.Object execute(FNKIWcfMethod wcfMethod,String methodName,com.easywsdl.exksoap2.ws_specifications.profile.WS_Profile profile) throws java.lang.Exception
+    protected java.lang.Object execute(RHOIWcfMethod wcfMethod,String methodName,com.easywsdl.exksoap2.ws_specifications.profile.WS_Profile profile) throws java.lang.Exception
     {
         org.ksoap2.transport.Transport __httpTransport=createTransport();
         __httpTransport.debug=enableLogging;
-        FNKExtendedSoapSerializationEnvelope __envelope=wcfMethod.CreateSoapEnvelope();
+        RHOExtendedSoapSerializationEnvelope __envelope=wcfMethod.CreateSoapEnvelope();
         try
         {
             sendRequest(methodName, __envelope, __httpTransport,profile);
@@ -230,7 +230,7 @@ public class FNKKPSPublicSoap
     }
 
 
-    protected java.lang.Exception convertToException(org.ksoap2.SoapFault fault,FNKExtendedSoapSerializationEnvelope envelope)
+    protected java.lang.Exception convertToException(org.ksoap2.SoapFault fault,RHOExtendedSoapSerializationEnvelope envelope)
     {
         org.ksoap2.SoapFault newException = fault;
         return newException;

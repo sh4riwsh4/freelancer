@@ -3,10 +3,9 @@ package com.example.freelance.demo.start.service.concretes;
 import com.example.freelance.demo.start.DAO.UserRepository;
 import com.example.freelance.demo.start.dto.CreateUserRequest;
 import com.example.freelance.demo.start.entitiy.User;
-import com.example.freelance.demo.start.mernis.FNKKPSPublicSoap;
+import com.example.freelance.demo.start.mernis.RHOKPSPublicSoap;
 import com.example.freelance.demo.start.service.abstracts.UserService;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -54,10 +53,10 @@ public class UserServiceImpl implements UserService {
     public Optional<User> getByUserName(String userName){
         return userRepository.findByUsername(userName);
     }
-    public ResponseEntity<String> createUser(CreateUserRequest request) throws Exception {
-        FNKKPSPublicSoap client = new FNKKPSPublicSoap();
+    public String createUser(CreateUserRequest request) throws Exception {
+        RHOKPSPublicSoap client = new RHOKPSPublicSoap();
 
-        try {
+
             long identityNumber = Long.parseLong(request.identityNumber());
             boolean isRealUser = client.TCKimlikNoDogrula(identityNumber, request.firstName(), request.lastName(), request.age());
 
@@ -68,6 +67,7 @@ public class UserServiceImpl implements UserService {
                         .wallet(request.wallet())
                         .location(request.location())
                         .email(request.email())
+                        .age(request.age())
                         .identityNumber(request.identityNumber())
                         .username(request.username())
                         .password(passwordEncoder.encode(request.password()))
@@ -79,15 +79,9 @@ public class UserServiceImpl implements UserService {
                         .build();
                 System.out.println("kullanıcı eklendi" + newUser.getAuthorities());
                 userRepository.save(newUser);
-                return ResponseEntity.ok("başarılı");
-            } else {
-                return ResponseEntity.badRequest().body("böyle biri yok");
+                return String.valueOf(userRepository.save(newUser));
             }
-        } catch (NumberFormatException e) {
-            // Hata durumunda ilgili durumu ele alın
-            e.printStackTrace(); // Hata mesajını görüntüle
-            return ResponseEntity.badRequest().body("Kimlik numarası sayıya dönüştürülemedi.");
-        }
+            return null;
     }
 
 

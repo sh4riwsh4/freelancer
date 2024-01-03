@@ -2,7 +2,6 @@ package com.example.freelance.demo.start.service.abstracts;
 
 import com.example.freelance.demo.start.dto.CreateUserRequest;
 import com.example.freelance.demo.start.entitiy.User;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
@@ -13,5 +12,5 @@ public interface UserService extends UserDetailsService {
     User save(User user);
     User getUserByFirstName(String Name);
 
-    ResponseEntity<String> createUser(CreateUserRequest request) throws Exception;
+    String createUser(CreateUserRequest request) throws Exception;
 }

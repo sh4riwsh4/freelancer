@@ -10,9 +10,8 @@ package com.example.freelance.demo.start.mernis;
 // To use it in commercial project, you need to generate this class again with Premium account.
 // Check https://EasyWsdl.com/Payment/PremiumAccountDetails to see all benefits of Premium account.
 //
-// Licence: EA6CF574096D028B7C0CB4F319D24E36AB031D06A2A0AAE996BD2E40AC5517B697D2CE62400BB69DF8DDD92FE894EE072790108B038DE08A5A65830516EF93FA
+// Licence: 4A180746F817E7A68E8D194530E8EFBED2967114260B5BED6280E0FA65F276299502872A7BDF84333D4CA4CE8161AD4B7B6D5B9C39B1EE19154A40F0AF0409DA
 //------------------------------------------------------------------------
-
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.*;
 import org.kxml2.io.KXmlParser;
@@ -33,13 +32,13 @@ import java.io.StringReader;
 import java.io.StringWriter;
 
 
-class FNKSoapFaultEx extends org.ksoap2.SoapFault
+class RHOSoapFaultEx extends org.ksoap2.SoapFault
 {
     public Object fault;
 }
 
 //If you have a compilation error here then you have to add a reference to ExKsoap2.jar to your project (you can find it in Libs folder in the generated zip file)
-public class FNKExtendedSoapSerializationEnvelope extends com.easywsdl.exksoap2.serialization.ExSoapSerializationEnvelope {
+public class RHOExtendedSoapSerializationEnvelope extends com.easywsdl.exksoap2.serialization.ExSoapSerializationEnvelope {
     static HashMap< java.lang.String,java.lang.Class> classNames = new HashMap< java.lang.String, java.lang.Class>();
     static HashMap< java.lang.String,java.lang.String> elementNames = new HashMap< java.lang.String, java.lang.String>();
     public static String TAG="easyWSDL";
@@ -49,31 +48,31 @@ public class FNKExtendedSoapSerializationEnvelope extends com.easywsdl.exksoap2.
     public boolean enableLogging;
     public boolean createClassesForAny = false;
 
-    public static void setDateTimeConverter(FNKDateTimeConverter converter)
+    public static void setDateTimeConverter(RHODateTimeConverter converter)
     {
         if(converter==null)
         {
-            converter = new FNKStandardDateTimeConverter();
+            converter = new RHOStandardDateTimeConverter();
         }
         dateTimeConverter=converter;
     }
 
-    public static FNKDateTimeConverter getDateTimeConverter()
+    public static RHODateTimeConverter getDateTimeConverter()
     {
         return dateTimeConverter;
     }
 
-    private static FNKDateTimeConverter dateTimeConverter = new FNKStandardDateTimeConverter();
+    private static RHODateTimeConverter dateTimeConverter = new RHOStandardDateTimeConverter();
 
-    public FNKExtendedSoapSerializationEnvelope() {
+    public RHOExtendedSoapSerializationEnvelope() {
         this(SoapEnvelope.VER11);
     }
 
-    public FNKExtendedSoapSerializationEnvelope(int soapVersion) {
+    public RHOExtendedSoapSerializationEnvelope(int soapVersion) {
         super(soapVersion);
         implicitTypes = true;
         setAddAdornments(false);
-        new FNKMarshalGuid().register(this);
+        new RHOMarshalGuid().register(this);
         new MarshalFloat().register(this);
     }
 
@@ -127,7 +126,7 @@ public class FNKExtendedSoapSerializationEnvelope extends com.easywsdl.exksoap2.
         if (!type.multiRef && qName[2] == null )
         {
             if (!implicitTypes || (obj.getClass() != type.type && !(obj instanceof Vector ) && type.type!=java.lang.String.class  )) {
-                java.lang.String xmlName=FNKHelper.getKeyByValue(classNames,obj.getClass());
+                java.lang.String xmlName=RHOHelper.getKeyByValue(classNames,obj.getClass());
                 if(xmlName!=null) {
                     java.lang.String[] parts = xmlName.split("\\^\\^");
                     java.lang.String prefix = writer.getPrefix(parts[0], true);
@@ -250,7 +249,7 @@ public class FNKExtendedSoapSerializationEnvelope extends com.easywsdl.exksoap2.
     }
     private Object createObject(Object soap, Class cl) throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         Object obj=cl.newInstance();
-        Method ctor = obj.getClass().getMethod("loadFromSoap",Object.class,FNKExtendedSoapSerializationEnvelope.class);
+        Method ctor = obj.getClass().getMethod("loadFromSoap",Object.class,RHOExtendedSoapSerializationEnvelope.class);
         ctor.invoke(obj,soap,this);
         return obj;
     }
@@ -369,7 +368,7 @@ public class FNKExtendedSoapSerializationEnvelope extends com.easywsdl.exksoap2.
         {
             return "boolean";
         }
-        java.lang.String xmlName=FNKHelper.getKeyByValue(classNames,obj);
+        java.lang.String xmlName=RHOHelper.getKeyByValue(classNames,obj);
         if(xmlName==null)
         {
             return obj;

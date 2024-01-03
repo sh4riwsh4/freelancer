@@ -67,7 +67,7 @@ public class UserRestController {
         return "hello welcome";
     }
     @PostMapping("/PUBLIC/addNewUser")
-    public ResponseEntity<String> addUser(@RequestBody CreateUserRequest request) throws Exception {
+    public String addUser(@RequestBody CreateUserRequest request) throws Exception {
         return  userService.createUser(request);
     }
 

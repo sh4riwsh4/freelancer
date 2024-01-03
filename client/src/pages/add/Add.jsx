@@ -10,20 +10,22 @@ const Add = () => {
   const [ilanResmi, setIlanResmi] = useState('');
   const [description, setDescription] = useState('');
   const [deadline, setDeadline] = useState('');
+  
   let loggedIn = false;
+  const storedData = localStorage.getItem('user');
+  let myToken = null;
+  let userN = null;
+
+  if (storedData){
+  const parsedData = JSON.parse(storedData);
+  myToken = parsedData.data.accessToken;
+  userN = parsedData.data.userId;
+  loggedIn = true;
+  }
+
   const handleIlanSubmit = async (e) => {
     e.preventDefault();
 
-    const storedData = localStorage.getItem('user');
-    let myToken = null;
-    let userN = null;
-  
-    if (storedData){
-    const parsedData = JSON.parse(storedData);
-    myToken = parsedData.data.accessToken;
-    userN = parsedData.data.userId;
-    loggedIn = true;
-    }
 
     try {
       // Sunucuya gönderilecek olan obje
@@ -140,7 +142,7 @@ const Add = () => {
         )
         : 
         (
-          <div className="notlogged">
+        <div className="notlogged">
           <Error/>
         </div>
         )}
