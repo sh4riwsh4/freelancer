@@ -21,6 +21,16 @@ const Login = () => {
     });
   };
 
+  const fetchData = async () => {
+    try {
+      const response = await axios.get();
+      const data = response.data;
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Gönderilen Veriler: ', formData);
@@ -30,6 +40,14 @@ const Login = () => {
         console.log('Backend\'den gelen cevap: ', response.data);
         if (response.data) {
           localStorage.setItem('user', JSON.stringify(response))
+          axios.get(`http://localhost:8080/api/PUBLIC/users/userName/${response.data.userId}`)
+          .then(response => {
+            localStorage.setItem('usertype', response.data.authorities[0])
+          })
+          .catch(error => {
+            console.error('Başka bir GET isteği hatası:', error);
+          });
+          console.log(localStorage.getItem("usertype"))
           history("/");
         }
       })

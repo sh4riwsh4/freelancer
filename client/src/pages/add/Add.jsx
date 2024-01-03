@@ -10,14 +10,17 @@ const Add = () => {
   const [ilanResmi, setIlanResmi] = useState('');
   const [description, setDescription] = useState('');
   const [deadline, setDeadline] = useState('');
-  
+
+  let data = null;
   let loggedIn = false;
   const storedData = localStorage.getItem('user');
   let myToken = null;
   let userN = null;
+  let type = null;
 
   if (storedData){
   const parsedData = JSON.parse(storedData);
+  type = localStorage.getItem('usertype');
   myToken = parsedData.data.accessToken;
   userN = parsedData.data.userId;
   loggedIn = true;
@@ -74,7 +77,7 @@ const Add = () => {
 
   return (
     <div>
-      {loggedIn ? (
+      {loggedIn && type === 'ROLE_ISVEREN' ? (
           <div className="container  my-4 w-50">
           <h2>İlan Oluştur</h2>
           <Form onSubmit={handleIlanSubmit} autoComplete='off'>

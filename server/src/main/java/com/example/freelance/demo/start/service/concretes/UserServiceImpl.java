@@ -50,7 +50,8 @@ public class UserServiceImpl implements UserService {
     public User getUserByFirstName(String Name) {
         return userRepository.getUserByFirstName(Name);
     }
-    public Optional<User> getByUserName(String userName){
+
+    public User getByUserName(String userName){
         return userRepository.findByUsername(userName);
     }
     public String createUser(CreateUserRequest request) throws Exception {
@@ -88,8 +89,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user=userRepository.findByUsername(username);
-        return user.orElseThrow(EntityNotFoundException::new);
+        return userRepository.findByUsername(username);
     }
-
 }

@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 import "./Register.scss";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [selectedButton, setSelectedButton] = useState('button1');
   const [chosenType, setChosenType] = useState(null);
+  const navigate = useNavigate();
 
   const handleButtonSelect = (buttonName) => {
     setSelectedButton(buttonName);
@@ -54,6 +56,9 @@ const Register = () => {
       .post('http://localhost:8080/api/PUBLIC/addNewUser', formData)
       .then((response) => {
         console.log("Backend'den gelen cevap: ", response.data);
+        if (response.data) {
+          navigate("/login")
+        }
       })
       .catch((error) => {
         console.error("Hata:", error);
@@ -191,8 +196,9 @@ const Register = () => {
             <div className="d-grid">
               <button type="submit" className="btn btn-success">
                 Kayıt Ol
-              </button>
+              </button>              
             </div>
+
           </form>
         </div>
       </div>

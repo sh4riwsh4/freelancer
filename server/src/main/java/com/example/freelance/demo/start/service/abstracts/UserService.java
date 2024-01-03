@@ -13,4 +13,6 @@ public interface UserService extends UserDetailsService {
     User getUserByFirstName(String Name);
 
     String createUser(CreateUserRequest request) throws Exception;
+
+    User getByUserName(String userName);
 }

@@ -45,8 +45,13 @@ public class UserRestController {
         return user;
     }
     @GetMapping("/users/firstName/{firstName}")
-    public User getByUserName(@PathVariable String firstName){
+    public User getByFirstName(@PathVariable String firstName){
         return userService.getUserByFirstName(firstName);
+    }
+
+    @GetMapping("/PUBLIC/users/userName/{userName}")
+    public User getByUserName(@PathVariable String userName){
+        return userService.getByUserName(userName);
     }
 
     @PutMapping("/ORTAK/users")
