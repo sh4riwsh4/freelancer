@@ -13,6 +13,7 @@ import Profile from "./pages/profile/Profile";
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import Error from "./pages/error/Error";
+import Micro from "./pages/Micro";
 import './App.scss'
 
 
@@ -74,7 +75,11 @@ function App() {
             {
                 path:"/profile",
                 element:<Profile/>
-            },     
+            },
+            {
+                path:"/micro",
+                element:<Micro/>
+            },    
         ]
         },
         {
