@@ -3,6 +3,8 @@ import "./Orders.scss"
 import {Link} from "react-router-dom"
 import contactImg from "./icon.svg"
 import Error from "../error/Error"
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 const Orders = () => {
     const storedData = localStorage.getItem('user');
@@ -35,7 +37,26 @@ const Orders = () => {
                             <td>43</td>
                             <td>Semih</td>
                             <td>
-                                <img className="contact" src={contactImg} alt="" />
+                                <Popup trigger=
+                                    {
+                                        <img className="contact" src={contactImg} alt="" />} 
+                                    modal nested>
+                                    {
+                                        close => (
+                                            <div className='modal-div'>
+                                                <div className='content-div'>
+                                                    Welcome to GFG!!!
+                                                </div>
+                                                <div>
+                                                    <button onClick=
+                                                        {() => close()}>
+                                                            Close modal
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        )
+                                    }
+                                </Popup>
                             </td>
                         </tr>
                         </table>

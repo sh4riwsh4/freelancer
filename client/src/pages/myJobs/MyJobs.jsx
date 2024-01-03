@@ -12,11 +12,7 @@ const DataFetchingComponent = () => {
   
     const fetchData = async () => {
       try {
-        const response1 = await fetch(`http://localhost:8080/api/PUBLIC/jobs/user/işçi02`);
-        const jsonData1 = await response1.json();
-        setData(jsonData1);
-    
-        const response2 = await fetch(`http://localhost:8080/api/PUBLIC/jobs/user/işçi02`);
+        const response2 = await fetch(`http://localhost:8080/api/PUBLIC/jobs/user/${userN}}`);
         const jsonData2 = await response2.json();
         setData(jsonData2);
     
@@ -25,19 +21,23 @@ const DataFetchingComponent = () => {
       }
     };
    
-    const storedData = localStorage.getItem('user');
     let loggedIn = false;
-    let userId = null;
-
+    const storedData = localStorage.getItem('user');
+    let myToken = null;
+    let userN = null;
+    let type = null;
+  
     if (storedData){
     const parsedData = JSON.parse(storedData);
-    userId = parsedData.data.userId;
+    type = localStorage.getItem('usertype');
+    myToken = parsedData.data.accessToken;
+    userN = parsedData.data.userId;
     loggedIn = true;
     }
 
     return (
       <div>
-        {loggedIn ? (
+        {loggedIn && type === 'ROLE_ISVEREN' ? (
           <div className="myjobs">
             <div className="myjobs-container">
                 <div className="myjobs-title">

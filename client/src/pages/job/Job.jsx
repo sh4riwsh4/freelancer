@@ -3,6 +3,9 @@ import "./Job.scss"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import { useParams ,BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
+import axios from "axios";
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -16,12 +19,66 @@ const DataFetchingComponent = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/api/jobs/id/${jobId}`);
+      const response = await fetch(`http://localhost:8080/api/PUBLIC/jobs/id/${jobId}`);
       const jsonData = await response.json();
       setData(jsonData);
     } catch (error) {
       console.log('Veri çekme hatası:', error);
     }
+  };
+
+  let loggedIn = false;
+  const storedData = localStorage.getItem('user');
+  let myToken = null;
+  let userN = null;
+  let type = null;
+
+  if (storedData){
+  const parsedData = JSON.parse(storedData);
+  type = localStorage.getItem('usertype');
+  myToken = parsedData.data.accessToken;
+  userN = parsedData.data.userId;
+  loggedIn = true;
+  }
+
+  const [formData, setFormData] = useState({
+      fiyat: "",
+  });
+
+  useEffect(() => {
+    setFormData((prevFormData) => ({
+      ...prevFormData
+    }));
+  }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Gönderilen Veriler: ", formData);
+
+    axios
+      .post('http://localhost:8080/api/ISALAN/offers/create', formData, {
+        headers: {
+          Authorization: myToken,
+        },
+      })
+      .then((response) => {
+        console.log("Backend'den gelen cevap: ", response.data);
+      })
+      .catch((error) => {
+        console.error("Hata:", error);
+      });
+
+    setFormData({
+      fiyat: "",
+    });
   };
 
   return (
@@ -105,7 +162,33 @@ const DataFetchingComponent = () => {
               <span>3 Revizyon</span>
             </div>
           </div>
-          <button>Devam Et</button>
+          <Popup trigger=
+              {
+                <button>Devam Et</button>} 
+              modal nested>
+              {
+                  close => (
+                      <div className='modal-div'>
+                          <div className='content-div'>
+                              {data.title} isimli işe teklif gönderiyorsun.
+                          </div>
+                          <form className="modal-form" onSubmit={handleSubmit}>
+                            <label className="modal-label" htmlFor="fiyat">İstediğin Ücret:</label>
+                            <input className="modal-input" type="number" id="fiyat" min = "1" max = {data.price} onChange={handleChange} name="fiyat" />
+                            <div>
+                              <button className = "bttn" onClick=
+                                  {() => close()}>
+                                      Vazgeç
+                              </button>
+                              <button className = "bttn" type="submit">
+                                      Teklifi Gönder
+                              </button>
+                            </div>
+                          </form>
+                      </div>
+                  )
+              }
+          </Popup>
         </div>
       </div>
     </div>

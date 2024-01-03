@@ -12,12 +12,16 @@ const Navbar = () => {
     window.scrollY > 0 ? setActive(true) : setActive(false)
   }
 
-  const storedData = localStorage.getItem('user');
   let loggedIn = false;
+  const storedData = localStorage.getItem('user');
+  let myToken = null;
   let userId = null;
+  let type = null;
 
   if (storedData){
   const parsedData = JSON.parse(storedData);
+  type = localStorage.getItem('usertype');
+  myToken = parsedData.data.accessToken;
   userId = parsedData.data.userId;
   loggedIn = true;
   }
@@ -44,7 +48,7 @@ const Navbar = () => {
   const currentUser= {
     id:1,
     userName: userId ? userId : "a",
-    isSeller : true
+    isSeller: (type === "ROLE_ISVEREN"),
   };
 
   return (

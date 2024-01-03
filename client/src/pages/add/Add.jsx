@@ -11,7 +11,6 @@ const Add = () => {
   const [description, setDescription] = useState('');
   const [deadline, setDeadline] = useState('');
 
-  let data = null;
   let loggedIn = false;
   const storedData = localStorage.getItem('user');
   let myToken = null;
