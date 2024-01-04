@@ -10,17 +10,6 @@ const DataFetchingComponent = () => {
       fetchData();
     }, [jobId]);
   
-    const fetchData = async () => {
-      try {
-        const response2 = await fetch(`http://localhost:8080/api/PUBLIC/offers/${jobId}`);
-        const jsonData2 = await response2.json();
-        setData(jsonData2);
-    
-      } catch (error) {
-        console.log('Veri çekme hatası:', error);
-      }
-    };
-   
     let loggedIn = false;
     const storedData = localStorage.getItem('user');
     let myToken = null;
@@ -34,6 +23,21 @@ const DataFetchingComponent = () => {
     userN = parsedData.data.userId;
     loggedIn = true;
     }
+
+    const fetchData = async () => {
+      try {
+        const response2 = await fetch(`http://localhost:8080/api/ORTAK/offers/${jobId}`, {
+        headers: {
+          Authorization: myToken,
+        },
+      });
+        const jsonData2 = await response2.json();
+        setData(jsonData2);
+    
+      } catch (error) {
+        console.log('Veri çekme hatası:', error);
+      }
+    };
 
     const handleAccept = async (offerId, teklif) => {
         try {
@@ -58,6 +62,28 @@ const DataFetchingComponent = () => {
           // Hata işlemlerini burada yapabilirsiniz
         }
     };
+
+    const handlePayment = async (offerId) => {
+      try {
+          const response = await fetch(`http://localhost:8080/api/ISVEREN/makePayment/${offerId}`, {
+          method: 'POST',
+          headers: {
+              Authorization: myToken,
+          },
+        });
+        
+        if (response.ok) {
+          console.log(response);
+        } else {
+          console.log('POST isteği başarısız:', response.status);
+          // Hata işlemlerini burada yapabilirsiniz
+        }
+      } catch (error) {
+        console.log('POST isteği hatası:', error);
+        // Hata işlemlerini burada yapabilirsiniz
+      }
+  };
+
 
     const handleReject = async (offerId, teklif) => {
       try {
@@ -104,11 +130,11 @@ const DataFetchingComponent = () => {
                     <td>{item.amount}</td>
 
                     <td>
-                      {item.offerStatus === "pending" ? (
+                    {item.offerStatus === "pending" ? (
                         <button onClick={() => handleAccept(item.id, `${item.user.firstName} ${item.user.lastName}`)} className="buttonoffer-green">Kabul Et</button>
-                      ) : (
-                        <span>Reddedildi.</span>
-                      )}                     
+                      ) : item.offerStatus === "accepted" ? (
+                        <button onClick={() => handlePayment(item.id)}>Onayla</button>
+                      ) : null}               
                     </td>
                     <td>
                     {item.offerStatus === "pending" ? (

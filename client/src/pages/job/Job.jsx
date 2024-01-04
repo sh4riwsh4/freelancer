@@ -79,7 +79,7 @@ const DataFetchingComponent = () => {
           throw new Error("Bu projeye zaten teklif yapmışsın.");
         }
       });
-      return axios.post('http://localhost:8080/api/PUBLIC/offers/create', formData, {
+      return axios.post('http://localhost:8080/api/ISALAN/offers/create', formData, {
         headers: {
           Authorization: myToken,
         },

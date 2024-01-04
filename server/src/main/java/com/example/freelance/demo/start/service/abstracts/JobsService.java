@@ -11,5 +11,4 @@ public interface JobsService {
     void deleteById(int id);
     Jobs save(Jobs jobs);
     List<Jobs> findAllActiveJobs();
-
 }

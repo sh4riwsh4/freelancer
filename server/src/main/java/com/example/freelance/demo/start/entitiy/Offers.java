@@ -1,8 +1,10 @@
 package com.example.freelance.demo.start.entitiy;
 
-import com.example.freelance.demo.start.gerekli.OfferStatus;
+import com.example.freelance.demo.start.dto.OfferStatus;
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "offers")
 public class Offers {
@@ -25,6 +27,8 @@ public class Offers {
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private OfferStatus offerStatus;
+    @OneToOne(mappedBy = "offer", cascade = CascadeType.ALL)
+    private com.example.freelance.demo.start.entity.Payment payment;
 
     public Offers(int id, int jobId, String userName, User user, Jobs job, int amount, OfferStatus offerStatus) {
         this.id = id;

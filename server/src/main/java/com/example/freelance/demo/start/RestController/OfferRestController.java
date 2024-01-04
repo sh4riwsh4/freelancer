@@ -15,7 +15,7 @@ public class OfferRestController {
     public OfferRestController(OfferService offerService){
         this.offerService=offerService;
     }
-    @PostMapping("/PUBLIC/offers/create")
+    @PostMapping("/ISALAN/offers/create")
     public Offers createOffer(@RequestBody Offers offers) {
         offers.setId(0);
         return offerService.createOffer(offers);
@@ -32,4 +32,14 @@ public class OfferRestController {
     public List<Offers> getOffersForJob(@PathVariable int offersId) {
         return offerService.getOffersForJob(offersId);
     }
+    @PostMapping("/ISVEREN/makePayment/{offerId}")
+    public String makePaymentIfOfferAccepted(@PathVariable int offerId) {
+        try {
+            offerService.makePaymentIfOfferAccepted(offerId);
+            return "Payment successful";
+        } catch (RuntimeException e) {
+            return "Payment failed: " + e.getMessage();
+        }
+    }
+
 }

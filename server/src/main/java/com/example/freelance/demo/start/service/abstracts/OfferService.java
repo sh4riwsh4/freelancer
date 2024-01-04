@@ -9,8 +9,9 @@ public interface OfferService {
         void acceptOffer(int offerId);
         void rejectOffer(int offerId);
         List<Offers> getOffersForJob(int jobId);
+        void makePaymentIfOfferAccepted(int offerId) ;
 
 
 
 
-}
+        }

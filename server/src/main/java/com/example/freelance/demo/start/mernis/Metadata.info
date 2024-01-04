@@ -4,7 +4,7 @@
     <Version>8.0.1.0</Version>
     <AccountType>Basic</AccountType>
     <LibrariesFolder>easywsdl</LibrariesFolder>
-    <MainClass>RHOKPSPublicSoap</MainClass>
+    <MainClass>FNKKPSPublicSoap</MainClass>
   </Info>
   <Settings>
     <Url>https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx</Url>
@@ -29,21 +29,21 @@
     <DetectDictionaries>false</DetectDictionaries>
   </Settings>
   <Files>
+    <File>docs/Html/FNKKPSPublicSoap.html</File>
+    <File>docs/Html/FNKKPSPublicSoap12.html</File>
+    <File>docs/Html/FNKKPSPublicSoap12_methods.html</File>
+    <File>docs/Html/FNKKPSPublicSoap_methods.html</File>
     <File>docs/Html/MTOMTransfer.html</File>
-    <File>docs/Html/RHOKPSPublicSoap.html</File>
-    <File>docs/Html/RHOKPSPublicSoap12.html</File>
-    <File>docs/Html/RHOKPSPublicSoap12_methods.html</File>
-    <File>docs/Html/RHOKPSPublicSoap_methods.html</File>
     <File>docs/Html/Tips.html</File>
     <File>docs/Index.html</File>
     <File>docs/Styles/Blueprint_Styles/Style.css</File>
-    <File>RHODateTimeConverter.java</File>
-    <File>RHOExtendedSoapSerializationEnvelope.java</File>
-    <File>RHOHelper.java</File>
-    <File>RHOKPSPublicSoap.java</File>
-    <File>RHOKPSPublicSoap12.java</File>
-    <File>RHOMarshalGuid.java</File>
-    <File>RHOStandardDateTimeConverter.java</File>
+    <File>FNKDateTimeConverter.java</File>
+    <File>FNKExtendedSoapSerializationEnvelope.java</File>
+    <File>FNKHelper.java</File>
+    <File>FNKKPSPublicSoap.java</File>
+    <File>FNKKPSPublicSoap12.java</File>
+    <File>FNKMarshalGuid.java</File>
+    <File>FNKStandardDateTimeConverter.java</File>
   </Files>
   <Libraries>
     <File>ExKsoap2-1.0.4.0.jar</File>

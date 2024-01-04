@@ -2,17 +2,27 @@ package com.example.freelance.demo.start.service.concretes;
 
 import com.example.freelance.demo.start.DAO.UserRepository;
 import com.example.freelance.demo.start.dto.CreateUserRequest;
+import com.example.freelance.demo.start.entitiy.Jobs;
 import com.example.freelance.demo.start.entitiy.User;
-import com.example.freelance.demo.start.mernis.RHOKPSPublicSoap;
+import com.example.freelance.demo.start.mernis.FNKKPSPublicSoap;
 import com.example.freelance.demo.start.service.abstracts.UserService;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -51,13 +61,18 @@ public class UserServiceImpl implements UserService {
         return userRepository.getUserByFirstName(Name);
     }
 
-    public User getByUserName(String userName){
+    @Override
+    public User getUserByUserName(String username) {
+        return userRepository.getUserByUsername(username);
+    }
+
+    public Optional<User> getByUserName(String userName){
         return userRepository.findByUsername(userName);
     }
-    public String createUser(CreateUserRequest request) throws Exception {
-        RHOKPSPublicSoap client = new RHOKPSPublicSoap();
+    public ResponseEntity<String> createUser(CreateUserRequest request) throws Exception {
+        FNKKPSPublicSoap client = new FNKKPSPublicSoap();
 
-
+        try {
             long identityNumber = Long.parseLong(request.identityNumber());
             boolean isRealUser = client.TCKimlikNoDogrula(identityNumber, request.firstName(), request.lastName(), request.age());
 
@@ -66,9 +81,7 @@ public class UserServiceImpl implements UserService {
                         .firstName(request.firstName())
                         .lastName(request.lastName())
                         .wallet(request.wallet())
-                        .location(request.location())
                         .email(request.email())
-                        .age(request.age())
                         .identityNumber(request.identityNumber())
                         .username(request.username())
                         .password(passwordEncoder.encode(request.password()))
@@ -80,15 +93,35 @@ public class UserServiceImpl implements UserService {
                         .build();
                 System.out.println("kullanıcı eklendi" + newUser.getAuthorities());
                 userRepository.save(newUser);
-                return String.valueOf(userRepository.save(newUser));
+                return ResponseEntity.ok("başarılı");
+            } else {
+                return ResponseEntity.badRequest().body("böyle biri yok");
             }
-            return null;
+        } catch (NumberFormatException e) {
+            // Hata durumunda ilgili durumu ele alın
+            e.printStackTrace(); // Hata mesajını görüntüle
+            return ResponseEntity.badRequest().body("Kimlik numarası sayıya dönüştürülemedi.");
+        }
     }
 
+    public void addPhotoToUser(String  username, byte[] photoData) {
+        Optional<User> optionalUser = userRepository.findByUsername(username);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            user.setPhoto(photoData);
+            userRepository.save(user);
+            user.setPhoto(photoData);
+            userRepository.save(user);
+        } else {
+            System.out.println("addPhotoError,");
+        }
 
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUsername(username);
+        Optional<User> user=userRepository.findByUsername(username);
+        return user.orElseThrow(EntityNotFoundException::new);
     }
+
 }

@@ -24,6 +24,27 @@ const DataFetchingComponent = () => {
       }
     };
    
+    const handlePayment = async (offerId) => {
+      try {
+          const response = await fetch(`http://localhost:8080/api/ISVEREN/makePayment/${offerId}`, {
+          method: 'POST',
+          headers: {
+              Authorization: myToken,
+          },
+        });
+        
+        if (response.ok) {
+          console.log("başarılı")
+        } else {
+          console.log('POST isteği başarısız:', response.status);
+          // Hata işlemlerini burada yapabilirsiniz
+        }
+      } catch (error) {
+        console.log('POST isteği hatası:', error);
+        // Hata işlemlerini burada yapabilirsiniz
+      }
+  };
+  
     let loggedIn = false;
     const storedData = localStorage.getItem('user');
     let myToken = null;
@@ -64,21 +85,14 @@ const DataFetchingComponent = () => {
                     <td>{item.price}</td>
                     <td>Aktif</td>
                     <td>
-                    {item[5] ? (
                       <Link className="link" to={`/offers/${item[0]}`}>
                         <button>
                           Teklifleri Görüntüle
                         </button>
                       </Link>
-                    ) : (
-                      <>
-                      {console.log("log", localStorage.getItem(item[0]))}
-                      <span>{localStorage.getItem(item[0])}</span>
-                      </>
-                    )}
                     </td>
                     <td>
-                        <img className="contact" src={deleteImg} alt="İşi Sil" />
+                        <button onClick={() => handlePayment(item[0])}>Onayla</button>
                     </td>
                 </tr>
                 ))}

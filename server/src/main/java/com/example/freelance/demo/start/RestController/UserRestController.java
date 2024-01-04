@@ -15,6 +15,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class UserRestController {
     }
 
 
-    @GetMapping("/users")
+    @GetMapping("/PUBLIC/users")
     public List<User> findAll(){
         return userService.findAll();
     }
@@ -44,38 +45,38 @@ public class UserRestController {
         User user=userService.findById(usersId);
         return user;
     }
-    @GetMapping("/users/firstName/{firstName}")
-    public User getByFirstName(@PathVariable String firstName){
+    @GetMapping("/PUBLIC/users/firstName/{firstName}")
+    public User getByUserName(@PathVariable String firstName){
         return userService.getUserByFirstName(firstName);
     }
-
-    @GetMapping("/PUBLIC/users/userName/{userName}")
-    public User getByUserName(@PathVariable String userName){
-        return userService.getByUserName(userName);
+    @GetMapping("/PUBLIC/users/userName/{username}")
+    public User getByUserUserName(@PathVariable String username){
+        return userService.getUserByUserName(username);
     }
 
     @PutMapping("/ORTAK/users")
     public User updateUser(@RequestBody User user){return userService.save(user);}
 
-    @DeleteMapping("/users/userId/{userId}")
+    @DeleteMapping("/ORTAK/userId/{userId}")
     public  void deleteUser(@PathVariable int userId){
         User user=userService.findById(userId);
         userService.deleteById(userId);
     }
-    @GetMapping("/ISVEREN/users/userName/{userName}")
-    public ResponseEntity<List<Jobs>> getUserJobs(@PathVariable String userName) {
+    @PostMapping
+
+    @GetMapping("/PUBLIC/users/userName/{userName}")
+    public List<Jobs> getUserJobs(@PathVariable String userName) {
         List<Jobs> jobs = jobsService.getUserJobs(userName);
-        return new ResponseEntity<>(jobs, HttpStatus.OK);
+        return jobs;
     }
     @GetMapping("/welcome")
     public String welcome(){
         return "hello welcome";
     }
     @PostMapping("/PUBLIC/addNewUser")
-    public String addUser(@RequestBody CreateUserRequest request) throws Exception {
+    public ResponseEntity<String> addUser(@RequestBody CreateUserRequest request) throws Exception {
         return  userService.createUser(request);
     }
-
     @PostMapping("/generateToken")
     public String generateToken(@RequestBody AuthRequest request) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.username(), request.password()));
@@ -85,6 +86,7 @@ public class UserRestController {
         log.info("invalid username " + request.username());
         throw new UsernameNotFoundException("invalid username {} " + request.username());
     }
+
 
 }
 

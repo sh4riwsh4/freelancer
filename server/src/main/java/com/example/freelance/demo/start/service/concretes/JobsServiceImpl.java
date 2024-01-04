@@ -2,6 +2,7 @@ package com.example.freelance.demo.start.service.concretes;
 
 import com.example.freelance.demo.start.DAO.JobsRepository;
 import com.example.freelance.demo.start.entitiy.Jobs;
+import com.example.freelance.demo.start.entitiy.User;
 import com.example.freelance.demo.start.service.abstracts.JobsService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.ParameterMode;
