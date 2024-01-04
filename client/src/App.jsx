@@ -14,6 +14,7 @@ import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import Error from "./pages/error/Error";
 import Micro from "./pages/Micro";
+import Offers from "./pages/offers/Offers";
 import './App.scss'
 
 
@@ -79,7 +80,11 @@ function App() {
             {
                 path:"/micro",
                 element:<Micro/>
-            },    
+            },
+            {
+                path:"/offers/:jobId/*",
+                element:<Offers/>
+            },  
         ]
         },
         {

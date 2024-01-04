@@ -184,34 +184,40 @@ const DataFetchingComponent = () => {
               <span>3 Revizyon</span>
             </div>
           </div>
-          <Popup trigger=
-              {
-                <button>Devam Et</button>} 
-              modal nested>
-              {
-                  close => (
-                      <div className='modal-div'>
-                          <div className='content-div'>
-                              {data.title} isimli işe teklif gönderiyorsun.
+          {(loggedIn === false || type === "ROLE_ISVEREN") ? (
+            <button className="red">Teklif Yapamazsın</button>
+            ) 
+            : 
+            (
+            <Popup   
+                  trigger= {<button> Devam Et</button>}
+                  modal
+                  nested>
+                  {
+                      close => (
+                          <div className='modal-div'>
+                              <div className='content-div'>
+                                  {data.title} isimli işe teklif gönderiyorsun.
+                              </div>
+                              <form className="modal-form" onSubmit={handleSubmit}>
+                                <label className="modal-label" htmlFor="amount">İstediğin Ücret:</label>
+                                <input className="modal-input" type="number" id="amount" min = "1" max = {data.price} onChange={handleChange} required name="amount" />
+                                {error && <p>{error}</p>}
+                                <div>
+                                  <button className = "bttn" onClick=
+                                      {() => close()}>
+                                          Vazgeç
+                                  </button>
+                                  <button className = "bttn" type="submit">
+                                          Teklifi Gönder
+                                  </button>
+                                </div>
+                              </form>
                           </div>
-                          <form className="modal-form" onSubmit={handleSubmit}>
-                            <label className="modal-label" htmlFor="amount">İstediğin Ücret:</label>
-                            <input className="modal-input" type="number" id="amount" min = "1" max = {data.price} onChange={handleChange} required name="amount" />
-                            {error && <p>{error}</p>}
-                            <div>
-                              <button className = "bttn" onClick=
-                                  {() => close()}>
-                                      Vazgeç
-                              </button>
-                              <button className = "bttn" type="submit">
-                                      Teklifi Gönder
-                              </button>
-                            </div>
-                          </form>
-                      </div>
-                  )
-              }
-          </Popup>
+                      )
+                  }
+            </Popup>
+            )}
         </div>
       </div>
     </div>
