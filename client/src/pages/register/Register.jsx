@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Register = () => {
   const [selectedButton, setSelectedButton] = useState('button1');
   const [chosenType, setChosenType] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   const handleButtonSelect = (buttonName) => {
@@ -59,9 +60,21 @@ const Register = () => {
         if (response.data) {
           navigate("/login")
         }
+        else{
+          setErrorMessage('Girdiğiniz Bilgiler Hatalı');
+          setTimeout(() => {
+            setErrorMessage('');
+          }, 3000); 
+        }
       })
       .catch((error) => {
         console.error("Hata:", error);
+        if (error.response && error.response.status === 403) {
+          setErrorMessage('Kullanıcı adı veya şifre hatalı!');
+          setTimeout(() => {
+            setErrorMessage('');
+          }, 3000); // 3 sn sonra uyarı  kaybolacak
+        }
       });
 
     setFormData({
@@ -104,6 +117,11 @@ const Register = () => {
       <div className="container d-flex justify-content-center align-items-center vh-100">
         <div className="card p-4">
           <h2 className="text-center mb-4">KAYIT OL</h2>
+          {errorMessage && (
+          <div className="alert alert-danger" role="alert">
+            {errorMessage}
+          </div>
+        )}
           <form onSubmit={handleSubmit} autoComplete="off">
             <div className="row mb-3">
               <div className="col">

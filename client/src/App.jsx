@@ -14,7 +14,11 @@ import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import Error from "./pages/error/Error";
 import Micro from "./pages/Micro";
+<<<<<<< HEAD
+import ProfileEdit from "./pages/message/Message";
+=======
 import Offers from "./pages/offers/Offers";
+>>>>>>> 6deb50b125647ace1c76d26ae15515cd4cd24db0
 import './App.scss'
 
 
@@ -82,9 +86,15 @@ function App() {
                 element:<Micro/>
             },
             {
+<<<<<<< HEAD
+                path:"/profileedit",
+                element:<ProfileEdit/>
+            },    
+=======
                 path:"/offers/:jobId/*",
                 element:<Offers/>
             },  
+>>>>>>> 6deb50b125647ace1c76d26ae15515cd4cd24db0
         ]
         },
         {
