@@ -41,7 +41,7 @@ const DataFetchingComponent = () => {
   <div className="container">
     <h1 style={{ margin: "10px" }}>İlanları Keşfet</h1>
     <hr />
-    <div className="row justify-content-between">
+    <div className="row justify-content-left">
       {data.map((item) => (
         <div key={item.id} className="col-6 col-md-6 col-lg-3 mb-4">
           <div className="product-card" style={{ height: "480px" }}>
