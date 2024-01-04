@@ -1,7 +1,6 @@
 package com.example.freelance.demo.start.RestController;
 
 import com.example.freelance.demo.start.entitiy.Jobs;
-import com.example.freelance.demo.start.entitiy.User;
 import com.example.freelance.demo.start.service.abstracts.JobsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +28,11 @@ public class JobsController {
         Jobs jobs=jobsService.findById(jobsId);
         return jobs;
     }
+    @GetMapping("/PUBLIC/jobs/user/{userName}")
+    public List<Jobs> findByUserName(@PathVariable String userName){
+        return jobsService.getUserJobs(userName);
+    }
+
     @PostMapping("/ISVEREN/jobs")
     public Jobs addJobs(@RequestBody Jobs jobs){
         jobs.setId(0);

@@ -294,6 +294,10 @@
           font-size: 18px;
           cursor: pointer;
         }
+
+        .red{
+          background-color: red;
+        }
       }
     }
   }
@@ -324,7 +328,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 200px;
+    height: 250px;
     background-color: #f2f2f2;
     padding: 20px;
     border-radius: 5px;
@@ -350,6 +354,7 @@
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    margin-bottom: 10px;
   }
 
 

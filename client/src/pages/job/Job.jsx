@@ -32,7 +32,7 @@ const DataFetchingComponent = () => {
   let myToken = null;
   let userN = null;
   let type = null;
-  let isPended = false;
+  let isPending = false;
 
   if (storedData){
   const parsedData = JSON.parse(storedData);
@@ -41,6 +41,8 @@ const DataFetchingComponent = () => {
   userN = parsedData.data.userId;
   loggedIn = true;
   }
+
+  const [error, setError] = useState(null);
 
   const [formData, setFormData] = useState({
       jobId : parseInt(jobId),
@@ -67,26 +69,40 @@ const DataFetchingComponent = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Gönderilen Veriler: ", formData);
-
+  
+    // Kontrol isteği yapma
     axios
-      .post('http://localhost:8080/api/PUBLIC/offers/create', formData, {
+    .get(`http://localhost:8080/api/PUBLIC/offers/${jobId}`)
+    .then((response) => {
+      response.data.forEach((offer) => {
+        if (offer.offerStatus === "pending" && offer.userName === userN) {
+          throw new Error("Bu projeye zaten teklif yapmışsın.");
+        }
+      });
+      return axios.post('http://localhost:8080/api/PUBLIC/offers/create', formData, {
         headers: {
           Authorization: myToken,
         },
-      })
-      .then((response) => {
-        console.log("Backend'den gelen cevap: ", response.data);
-      })
-      .catch((error) => {
-        console.error("Hata:", error);
       });
-
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        amount: parseInt(prevFormData.amount)
-      }));
+    })
+    .then((response) => {
+      console.log("Backend'den gelen cevap: ", response.data);
+      setError("Projeye başarıyla teklif yaptın.");
+    })
+    .catch((error) => {
+      if (error.message === "Bu projeye zaten teklif yapmışsın.") {
+        setError(error.message);
+      } else {
+        console.error("Hata:", error);
+      }
+    });
+  
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      amount: parseInt(prevFormData.amount),
+    }));
   };
-
+  
   return (
     <div className="job">
       <div className="jobcont">
@@ -168,33 +184,40 @@ const DataFetchingComponent = () => {
               <span>3 Revizyon</span>
             </div>
           </div>
-          <Popup trigger=
-              {
-                <button>Devam Et</button>} 
-              modal nested>
-              {
-                  close => (
-                      <div className='modal-div'>
-                          <div className='content-div'>
-                              {data.title} isimli işe teklif gönderiyorsun.
+          {(loggedIn === false || type === "ROLE_ISVEREN") ? (
+            <button className="red">Teklif Yapamazsın</button>
+            ) 
+            : 
+            (
+            <Popup   
+                  trigger= {<button> Devam Et</button>}
+                  modal
+                  nested>
+                  {
+                      close => (
+                          <div className='modal-div'>
+                              <div className='content-div'>
+                                  {data.title} isimli işe teklif gönderiyorsun.
+                              </div>
+                              <form className="modal-form" onSubmit={handleSubmit}>
+                                <label className="modal-label" htmlFor="amount">İstediğin Ücret:</label>
+                                <input className="modal-input" type="number" id="amount" min = "1" max = {data.price} onChange={handleChange} required name="amount" />
+                                {error && <p>{error}</p>}
+                                <div>
+                                  <button className = "bttn" onClick=
+                                      {() => close()}>
+                                          Vazgeç
+                                  </button>
+                                  <button className = "bttn" type="submit">
+                                          Teklifi Gönder
+                                  </button>
+                                </div>
+                              </form>
                           </div>
-                          <form className="modal-form" onSubmit={handleSubmit}>
-                            <label className="modal-label" htmlFor="amount">İstediğin Ücret:</label>
-                            <input className="modal-input" type="number" id="amount" min = "1" max = {data.price} onChange={handleChange} name="amount" />
-                            <div>
-                              <button className = "bttn" onClick=
-                                  {() => close()}>
-                                      Vazgeç
-                              </button>
-                              <button className = "bttn" type="submit">
-                                      Teklifi Gönder
-                              </button>
-                            </div>
-                          </form>
-                      </div>
-                  )
-              }
-          </Popup>
+                      )
+                  }
+            </Popup>
+            )}
         </div>
       </div>
     </div>

@@ -8,6 +8,7 @@
       width: 1400px;
       padding: 30px 0px;
       display: flex;
+      justify-content: left;
       flex-direction: column;
       gap: 15px;
 
@@ -96,8 +97,9 @@
   
       .job-cards {
         display: flex;
-        justify-content: space-between;
+        justify-content: left;
         flex-wrap: wrap;
+        gap: 30px;
       }
     }
   }
