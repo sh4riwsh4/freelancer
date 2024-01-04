@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import "./Navbar.scss"
 import { Link, useLocation } from 'react-router-dom';
 
+
 const Navbar = () => {
   const [active,setActive] = useState(false);
   const [open,setOpen] = useState(false);
@@ -98,12 +99,18 @@ const Navbar = () => {
         <>
           <hr />
           <div className="menu">
-            <Link className='link' to="/ ">Grafik&Tasarım</Link>
-            <Link className='link' to="/ ">Yazılım</Link>
-            <Link className='link' to="/ ">Video</Link>
-            <Link className='link' to="/ ">Mühendislik&Mimarlık</Link>
-            <Link className='link' to="/ ">Seslendirme</Link>
-            <Link className='link' to="/ ">Tüm Meslekler</Link>
+          <div className="coinStream">
+    <marquee direction="right" >
+      <ul>
+        <li><a></a>Bitcoin:</li>
+        <li><a id="BTC">BTC</a> RCT - Ethereum:</li>
+        <li><a id="ETH">ETH</a> RCT - Litecoin:</li>
+        <li><a id="LTC">LTC</a> RCT - Ripple:</li>
+        <li><a id="XRP">XRP</a> RCT - Neo:</li>
+        <li><a id="NEO">NEO</a> RCT</li>
+      </ul>
+    </marquee>
+  </div>
           </div>
         </>
       )}

@@ -92,6 +92,28 @@
         font-weight: 300;
         color: gray;
         font-family: "Montserrat", sans-serif;
+        ul {
+            list-style-type: none;
+        
+            margin: 0;
+        
+            padding: 0;
+        
+            overflow: hidden;
+        }
+        li
+        {
+            float: left;
+            padding-left: 3px;
+        }
+        .coinStream
+        {
+            color: black;
+            z-index: 999;
+            position: relative;
+            margin-bottom: -40px;
+            background-color: transparent;
+        }
     }
 
 }

@@ -14,6 +14,7 @@ import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import Error from "./pages/error/Error";
 import Micro from "./pages/Micro";
+import ProfileEdit from "./pages/message/Message";
 import './App.scss'
 
 
@@ -79,6 +80,10 @@ function App() {
             {
                 path:"/micro",
                 element:<Micro/>
+            },
+            {
+                path:"/profileedit",
+                element:<ProfileEdit/>
             },    
         ]
         },

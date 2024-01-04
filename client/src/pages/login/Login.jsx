@@ -11,6 +11,7 @@ const Login = () => {
     password: '',
   });
 
+
   const history = useNavigate();
 
   const handleChange = (e) => {
@@ -24,7 +25,7 @@ const Login = () => {
   const handleRefresh = () => {
     window.location.reload();
   };
-
+  const [errorMessage, setErrorMessage] = useState('');
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Gönderilen Veriler: ', formData);
@@ -46,7 +47,13 @@ const Login = () => {
         }
       })
       .catch(error => {
-        console.error('Hata:', error);
+        // console.error('Hata:', error);
+        if (error.response && error.response.status === 403) {
+          setErrorMessage('Kullanıcı adı veya şifre hatalı!');
+          setTimeout(() => {
+            setErrorMessage('');
+          }, 3000); // 3 sn sonra uyarı  kaybolacak
+        }
       });
 
     setFormData({
@@ -58,7 +65,12 @@ const Login = () => {
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100">
       <div className="card p-4" style={{ width: '400px', height: '350px' }}>
-        <h2 className="text-center mb-4">Giriş Yap</h2>
+      <h2 className="text-center mb-4">Giriş Yap</h2>
+        {errorMessage && (
+          <div className="alert alert-danger" role="alert">
+            {errorMessage}
+          </div>
+        )}
         <form onSubmit={handleSubmit} autoComplete="off">
           <div className="mb-3">
             <input
