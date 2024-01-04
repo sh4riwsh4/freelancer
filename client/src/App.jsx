@@ -86,15 +86,12 @@ function App() {
                 element:<Micro/>
             },
             {
-<<<<<<< HEAD
                 path:"/profileedit",
                 element:<ProfileEdit/>
             },    
-=======
                 path:"/offers/:jobId/*",
                 element:<Offers/>
             },  
->>>>>>> 6deb50b125647ace1c76d26ae15515cd4cd24db0
         ]
         },
         {
