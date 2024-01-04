@@ -15,7 +15,7 @@ public class OfferRestController {
     public OfferRestController(OfferService offerService){
         this.offerService=offerService;
     }
-    @PostMapping("/ISALAN/offers/create")
+    @PostMapping("/PUBLIC/offers/create")
     public Offers createOffer(@RequestBody Offers offers) {
         offers.setId(0);
         return offerService.createOffer(offers);
@@ -28,7 +28,7 @@ public class OfferRestController {
     public void rejectOffer(@PathVariable int offerId) {
         offerService.rejectOffer(offerId);
     }
-    @GetMapping("/ORTAK/offers/{offersId}")
+    @GetMapping("/PUBLIC/offers/{offersId}")
     public List<Offers> getOffersForJob(@PathVariable int offersId) {
         return offerService.getOffersForJob(offersId);
     }

@@ -32,6 +32,7 @@ const DataFetchingComponent = () => {
   let myToken = null;
   let userN = null;
   let type = null;
+  let isPended = false;
 
   if (storedData){
   const parsedData = JSON.parse(storedData);
@@ -42,7 +43,10 @@ const DataFetchingComponent = () => {
   }
 
   const [formData, setFormData] = useState({
-      fiyat: "",
+      jobId : parseInt(jobId),
+      userName : userN,
+      amount: parseInt(""),
+      offerStatus : "pending"
   });
 
   useEffect(() => {
@@ -53,9 +57,10 @@ const DataFetchingComponent = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    const parsedValue = name === "amount" ? parseInt(value) : value;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: value,
+      [name]: parsedValue,
     }));
   };
 
@@ -64,7 +69,7 @@ const DataFetchingComponent = () => {
     console.log("Gönderilen Veriler: ", formData);
 
     axios
-      .post('http://localhost:8080/api/ISALAN/offers/create', formData, {
+      .post('http://localhost:8080/api/PUBLIC/offers/create', formData, {
         headers: {
           Authorization: myToken,
         },
@@ -76,9 +81,10 @@ const DataFetchingComponent = () => {
         console.error("Hata:", error);
       });
 
-    setFormData({
-      fiyat: "",
-    });
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        amount: parseInt(prevFormData.amount)
+      }));
   };
 
   return (
@@ -173,8 +179,8 @@ const DataFetchingComponent = () => {
                               {data.title} isimli işe teklif gönderiyorsun.
                           </div>
                           <form className="modal-form" onSubmit={handleSubmit}>
-                            <label className="modal-label" htmlFor="fiyat">İstediğin Ücret:</label>
-                            <input className="modal-input" type="number" id="fiyat" min = "1" max = {data.price} onChange={handleChange} name="fiyat" />
+                            <label className="modal-label" htmlFor="amount">İstediğin Ücret:</label>
+                            <input className="modal-input" type="number" id="amount" min = "1" max = {data.price} onChange={handleChange} name="amount" />
                             <div>
                               <button className = "bttn" onClick=
                                   {() => close()}>

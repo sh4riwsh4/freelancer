@@ -17,18 +17,21 @@ const Navbar = () => {
   let myToken = null;
   let userId = null;
   let type = null;
-
-  if (storedData){
-  const parsedData = JSON.parse(storedData);
-  type = localStorage.getItem('usertype');
-  myToken = parsedData.data.accessToken;
-  userId = parsedData.data.userId;
-  loggedIn = true;
-  }
+  let wallet = null;
 
   const handleRefresh = () => {
     window.location.reload();
   };
+
+  if (storedData){
+  const parsedData = JSON.parse(storedData);
+  type = localStorage.getItem('usertype');
+  wallet = localStorage.getItem('usermoney');
+  console.log(wallet)
+  myToken = parsedData.data.accessToken;
+  userId = parsedData.data.userId;
+  loggedIn = true;
+  }
 
   const handleLogout = () => {
     loggedIn = false;
@@ -72,6 +75,7 @@ const Navbar = () => {
               <img src="https://i.pinimg.com/236x/17/f8/1e/17f81ec7203b785f31414948a451e731.jpg" alt="" />
               <span>{currentUser?.userName}</span>
               {open && <div className="options">
+                <span>Bakiye:{wallet}</span>
                 <Link className='link' to="/profile">Profilim</Link>
                 {currentUser?.isSeller ? (
                   <>

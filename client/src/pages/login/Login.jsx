@@ -20,17 +20,11 @@ const Login = () => {
       [name]: value,
     });
   };
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get();
-      const data = response.data;
-      console.log(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
   
+  const handleRefresh = () => {
+    window.location.reload();
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Gönderilen Veriler: ', formData);
@@ -43,11 +37,11 @@ const Login = () => {
           axios.get(`http://localhost:8080/api/PUBLIC/users/userName/${response.data.userId}`)
           .then(response => {
             localStorage.setItem('usertype', response.data.authorities[0])
+            localStorage.setItem('usermoney', response.data.wallet)
           })
           .catch(error => {
             console.error('Başka bir GET isteği hatası:', error);
           });
-          console.log(localStorage.getItem("usertype"))
           history("/");
         }
       })
