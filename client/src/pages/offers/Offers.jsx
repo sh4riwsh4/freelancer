@@ -59,6 +59,28 @@ const DataFetchingComponent = () => {
         }
     };
 
+    const handleReject = async (offerId, teklif) => {
+      try {
+          const response = await fetch(`http://localhost:8080/api/ISVEREN/offers/reject/${offerId}`, {
+          method: 'POST',
+          headers: {
+              Authorization: myToken,
+          },
+          body: JSON.stringify({ jobId })
+        });
+        
+        if (response.ok) {
+          console.log("başarılı")
+        } else {
+          console.log('POST isteği başarısız:', response.status);
+          // Hata işlemlerini burada yapabilirsiniz
+        }
+      } catch (error) {
+        console.log('POST isteği hatası:', error);
+        // Hata işlemlerini burada yapabilirsiniz
+      }
+  };
+
     return (
       <div>
         {loggedIn && type === 'ROLE_ISVEREN' ? (
@@ -80,11 +102,20 @@ const DataFetchingComponent = () => {
                     <td>{item.job.title}</td>
                     <td>{item.user.firstName} {item.user.lastName}</td>
                     <td>{item.amount}</td>
+
                     <td>
+                      {item.offerStatus === "pending" ? (
                         <button onClick={() => handleAccept(item.id, `${item.user.firstName} ${item.user.lastName}`)} className="buttonoffer-green">Kabul Et</button>
+                      ) : (
+                        <span>Reddedildi.</span>
+                      )}                     
                     </td>
                     <td>
-                        <button className="buttonoffer-red">Reddet</button>
+                    {item.offerStatus === "pending" ? (
+                      <button onClick={() => handleReject(item.id)} className="buttonoffer-red">Reddet</button>
+                    ) : (
+                      <span>Reddedildi.</span>
+                    )}
                     </td>
                 </tr>
                 ))}
