@@ -4,6 +4,7 @@ import { useParams ,BrowserRouter as Router, Routes, Route } from 'react-router-
 import Error from "../error/Error"
 
 const DataFetchingComponent = () => {
+    const [payment, setPayment] = useState(false);
     const { jobId } = useParams();
     const [data, setData] = useState([]);
     useEffect(() => {
@@ -15,13 +16,15 @@ const DataFetchingComponent = () => {
     let myToken = null;
     let userN = null;
     let type = null;
-    
+    let wallet = null;
+
     if (storedData){
     const parsedData = JSON.parse(storedData);
     type = localStorage.getItem('usertype');
     myToken = parsedData.data.accessToken;
     userN = parsedData.data.userId;
     loggedIn = true;
+    wallet = localStorage.getItem('usermoney');
     }
 
     const fetchData = async () => {
@@ -62,7 +65,7 @@ const DataFetchingComponent = () => {
         }
     };
 
-    const handlePayment = async (offerId) => {
+    const handlePayment = async (offerId, price) => {
       try {
         const response = await fetch(`http://localhost:8080/api/ISVEREN/makePayment/${offerId}`, {
           method: 'POST',
@@ -72,8 +75,9 @@ const DataFetchingComponent = () => {
         });
       
         if (response.ok) {
-          // İsteğiniz başarılı oldu, burada response üzerinden verilere erişebilirsiniz
           console.log('Ödeme başarıyla yapıldı');
+          localStorage.setItem('usermoney', wallet - price);
+          setPayment(true)
         } else {
           console.log('POST isteği başarısız:', response.status);
           // Hata işlemlerini burada yapabilirsiniz
@@ -133,15 +137,24 @@ const DataFetchingComponent = () => {
                     {item.offerStatus === "pending" ? (
                         <button onClick={() => handleAccept(item.id, `${item.user.firstName} ${item.user.lastName}`)} className="buttonoffer-green">Kabul Et</button>
                       ) : item.offerStatus === "accepted" ? (
-                        <button onClick={() => handlePayment(item.id)}>Onayla</button>
-                      ) : null}               
+                        <>
+                          {!payment && (
+                            <button onClick={() => handlePayment(item.id, item.amount)}>Ödemeyi Yap</button>
+                          )}
+                          {payment && <span>Ödeme Yapıldı.</span>} 
+                        </>
+                      ) : item.offerStatus === "rejected" ? (
+                          <span>Reddedildi.</span>
+                      ) : null}             
                     </td>
-                    <td>
-                    {item.offerStatus === "pending" ? (
-                      <button onClick={() => handleReject(item.id)} className="buttonoffer-red">Reddet</button>
-                    ) : (
-                      <span>Reddedildi.</span>
-                    )}
+                    <td>                    
+                      {item.offerStatus === "pending" ? (
+                        <button onClick={() => handleReject(item.id)} className="buttonoffer-red">Reddet</button>
+                      ) : item.offerStatus === "accepted" ? (
+                        <span>Onaylandı.</span>
+                      ) : item.offerStatus === "rejected" ? (
+                        <span>Reddedildi.</span>
+                      ) : null}
                     </td>
                 </tr>
                 ))}

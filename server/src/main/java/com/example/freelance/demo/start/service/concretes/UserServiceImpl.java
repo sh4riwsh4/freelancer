@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public abstract class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder){
@@ -106,6 +106,11 @@ public abstract class UserServiceImpl implements UserService {
         } else {
             System.out.println("addPhotoError,");
         }
+
+    }
+
+    @Override
+    public void giveMoney(String userName, int amount) {
 
     }
 

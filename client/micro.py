@@ -1,8 +1,3 @@
-#pip install flask
-#pip install flask_cors
-#pip install google-auth
-#pip install google-api-python-client
-
 import os
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
