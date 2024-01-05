@@ -74,7 +74,7 @@ const Navbar = () => {
           )}
           {loggedIn && (
             <div className="user" onClick={()=>setOpen(!open)}>
-              <img src="https://i.pinimg.com/236x/17/f8/1e/17f81ec7203b785f31414948a451e731.jpg" alt="" />
+              <img src="https://i.pinimg.com/736x/fa/60/51/fa6051d72b821cb48a8cc71d3481dfef.jpg" alt="" />
               <span>{currentUser?.userName}</span>
               {open && <div className="options">
                 <span>Bakiye:{wallet}</span>

@@ -19,7 +19,7 @@ public class CommentRestController {
         this.commentService = commentService;
     }
 
-    @PostMapping("/ORTAK/addCOMMENT")
+    @PostMapping("/PUBLIC/addCOMMENT")
     public Comment addComment(@RequestParam String commenterUsername,
                               @RequestParam String targetUsername,
                               @RequestParam String content) {
@@ -28,7 +28,7 @@ public class CommentRestController {
         User targetUser = userService.getUserByUserName(targetUsername);
         return commentService.addComment(commenter, targetUser, content);
     }
-    @GetMapping("/ORTAK/comment/{username}")
+    @GetMapping("/PUBLIC/comment/{username}")
     public String getCommentsListByUsername(@PathVariable String username) {
         return commentService.getUserCommentsByUsername(username);
     }

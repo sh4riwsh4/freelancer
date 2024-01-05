@@ -10,19 +10,17 @@ const Card = ({ item }) => {
         <img src="https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg" alt="" />
         <div className="job-info">
           <div className="job-user">
-            <img src="https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg" alt="" />
+            <img src="https://i.pinimg.com/736x/fa/60/51/fa6051d72b821cb48a8cc71d3481dfef.jpg" alt="" />
             <span>{item.title}</span>
           </div>
           <p>{item.description}</p>
-          <div className="job-detail">
-          <img src="https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg" alt="" />
           <div className="job-price">
             <h2>
-              {item.price} TL
+              {item.price}
               <sup>99</sup>
+              TL
             </h2>
           </div>
-        </div>
         </div>
         <hr />
       </div>

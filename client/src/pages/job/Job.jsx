@@ -111,7 +111,7 @@ const DataFetchingComponent = () => {
           <div className="user">
             <img
               className="pp"
-              src="https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              src="https://i.pinimg.com/736x/fa/60/51/fa6051d72b821cb48a8cc71d3481dfef.jpg"
               alt=""
             />
             <span>{data.user?.firstName} {data.user?.lastName}</span>
@@ -140,7 +140,7 @@ const DataFetchingComponent = () => {
             <h2>Freelancer Hakkında</h2>
             <div className="user">
               <img
-                src="https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                src="https://i.pinimg.com/736x/fa/60/51/fa6051d72b821cb48a8cc71d3481dfef.jpg"
                 alt=""
               />
               <div className="info">
