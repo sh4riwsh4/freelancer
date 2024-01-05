@@ -77,6 +77,7 @@ public class UserRestController {
     public ResponseEntity<String> addUser(@RequestBody CreateUserRequest request) throws Exception {
         return  userService.createUser(request);
     }
+
     @PostMapping("/generateToken")
     public String generateToken(@RequestBody AuthRequest request) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.username(), request.password()));

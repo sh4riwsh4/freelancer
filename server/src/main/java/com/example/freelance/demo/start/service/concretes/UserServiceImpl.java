@@ -2,30 +2,21 @@ package com.example.freelance.demo.start.service.concretes;
 
 import com.example.freelance.demo.start.DAO.UserRepository;
 import com.example.freelance.demo.start.dto.CreateUserRequest;
-import com.example.freelance.demo.start.entitiy.Jobs;
 import com.example.freelance.demo.start.entitiy.User;
 import com.example.freelance.demo.start.mernis.FNKKPSPublicSoap;
 import com.example.freelance.demo.start.service.abstracts.UserService;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
-public class UserServiceImpl implements UserService {
+public abstract class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     public UserServiceImpl(UserRepository userRepository, BCryptPasswordEncoder passwordEncoder){

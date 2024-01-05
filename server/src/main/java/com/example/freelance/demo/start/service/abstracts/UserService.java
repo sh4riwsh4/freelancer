@@ -17,4 +17,6 @@ public interface UserService extends UserDetailsService {
     ResponseEntity<String> createUser(CreateUserRequest request) throws Exception;
 
     void addPhotoToUser(String username, byte[] photoData);
+
+    void giveMoney(String userName, int amount);
 }

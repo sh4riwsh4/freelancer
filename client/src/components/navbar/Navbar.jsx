@@ -64,6 +64,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="links">
+          <Link className='link' to="/micro">Hızlı İşler</Link>
           <Link className='link' to="/jobs">Aktif İlanlar</Link>
           {!loggedIn && (
             <>

@@ -48,7 +48,7 @@ const Jobs = () => {
     const formattedDate = currentDate.toLocaleDateString('tr-TR');
 
     return (
-        <div className="jobs">
+    <div className="jobs">
       <div className="job-container">
         <h1>Aktif İlanlar</h1>
         <p>

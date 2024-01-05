@@ -17,9 +17,8 @@ const Card = ({ item }) => {
           <div className="job-detail">
           <img src="https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg" alt="" />
           <div className="job-price">
-            <span>STARTING AT</span>
             <h2>
-              $ {item.price}
+              {item.price} TL
               <sup>99</sup>
             </h2>
           </div>

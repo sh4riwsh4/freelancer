@@ -13,7 +13,7 @@ import Profile from "./pages/profile/Profile";
 import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import Error from "./pages/error/Error";
-import Micro from "./pages/Micro";
+import Micro from "./pages/micro/Micro";
 import ProfileEdit from "./pages/message/Message";
 import Offers from "./pages/offers/Offers";
 import './App.scss'

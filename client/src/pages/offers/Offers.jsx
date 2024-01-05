@@ -26,7 +26,7 @@ const DataFetchingComponent = () => {
 
     const fetchData = async () => {
       try {
-        const response2 = await fetch(`http://localhost:8080/api/ORTAK/offers/${jobId}`, {
+        const response2 = await fetch(`http://localhost:8080/api/PUBLIC/offers/${jobId}`, {
         headers: {
           Authorization: myToken,
         },
@@ -46,7 +46,6 @@ const DataFetchingComponent = () => {
             headers: {
                 Authorization: myToken,
             },
-            body: JSON.stringify({ jobId })
           });
           
           if (response.ok) {
@@ -65,15 +64,16 @@ const DataFetchingComponent = () => {
 
     const handlePayment = async (offerId) => {
       try {
-          const response = await fetch(`http://localhost:8080/api/ISVEREN/makePayment/${offerId}`, {
+        const response = await fetch(`http://localhost:8080/api/ISVEREN/makePayment/${offerId}`, {
           method: 'POST',
           headers: {
-              Authorization: myToken,
+            Authorization: myToken,
           },
         });
-        
+      
         if (response.ok) {
-          console.log(response);
+          // İsteğiniz başarılı oldu, burada response üzerinden verilere erişebilirsiniz
+          console.log('Ödeme başarıyla yapıldı');
         } else {
           console.log('POST isteği başarısız:', response.status);
           // Hata işlemlerini burada yapabilirsiniz

@@ -1,76 +1,90 @@
-import googleapiclient.discovery
-import googleapiclient.errors
-from googleapiclient.errors import HttpError
+#pip install flask
+#pip install flask_cors
+#pip install google-auth
+#pip install google-api-python-client
 
-from flask import Flask, jsonify, request
+import os
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
+from flask import Flask, request, jsonify
 from flask_cors import CORS
+import mysql.connector
 
-youtube = googleapiclient.discovery.build('youtube', 'v3', developerKey='AIzaSyDELKbx9DvHKQa2zBCi2Zrrde_O0hvJJ4w')
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="admin",
+  database="db"
+)
+
+mycursor = mydb.cursor()
+mycursor.execute("SELECT * FROM jobs")
+jobs = mycursor.fetchall()
+mycursor.fetchall()  # Consume the result set
+job_list = []
+for job in jobs:
+    job_dict = {
+        'jobId': job[0],
+        'userName': job[1],
+        'title': job[2],
+        'channelName': job[3],
+        'channelId': job[4],
+        'participantCount': job[6],
+        'price': job[5]
+    }
+    job_list.append(job_dict)
 
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/api/microtransitions', methods=['POST'])
-def perform_microtransition():
-    data = request.get_json()
-    input_value = data['input']
-
-    # Mikro geçiş işlemini gerçekleştir
-    result = check_subscription(input_value)
-
-    # Sonucu JSON olarak döndür
-    response = {'result': result}
-    return jsonify(response)
-
-channel_id = "UCjLuDK6daotQxTcjdLsyUzQ"
-#user_id = "xsutBId6Ar21OTgs0kRuLw"
-
-def check_subscription(user_id):
-    try:
-        request = youtube.subscriptions().list(
-            part='snippet',
-            channelId=channel_id,
-            forChannelId=channel_id,
-            mine=True,
-            maxResults=1,
-            order='relevance',
-            subscriberId=user_id
-        )
-        response = request.execute()
-        
-        if 'items' in response and len(response['items']) > 0:
-            print("Kullanıcı kanalınıza abone.")
-        else:
-            print("Kullanıcı kanalınıza abone değil.")
-    except HttpError as e:
-        print("Hata oluştu:", e)
-
+scopes = ["https://www.googleapis.com/auth/youtube.force-ssl"]
 
 def subscribe_to_channel(channel_id):
-    try:
-        # Abonelik isteğini oluştur
-        request = youtube.subscriptions().insert(
-            part='snippet',
-            body={
-                'snippet': {
-                    'resourceId': {
-                        'kind': 'youtube#channel',
-                        'channelId': channel_id
-                    }
+    os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
+
+    api_service_name = "youtube"
+    api_version = "v3"
+    client_secrets_file = 'C:/Users/volta/Desktop/test/freelancer/client/clientsecret.json'
+
+    # Get credentials and create an API client
+    flow = InstalledAppFlow.from_client_secrets_file(client_secrets_file, scopes)
+    credentials = flow.run_local_server(port=5000)
+    service = build(api_service_name, api_version, credentials=credentials)
+
+    request = service.subscriptions().insert(
+        part="snippet",
+        body={
+            "snippet": {
+                "resourceId": {
+                    "channelId": "UCjLuDK6daotQxTcjdLsyUzQ"
                 }
             }
-        )
+        }
+    )
+    response = request.execute()
 
-        # Abonelik işlemini gerçekleştir
-        response = request.execute()
+    if 'snippet' in response:
+        print("Abonelik başarıyla gerçekleştirildi.")
+        return {'success': True}
+    else:
+        print("Abonelik gerçekleştirilemedi.")
+        return {'success': False}
 
-        print('Abonelik işlemi başarıyla gerçekleştirildi.')
-        return response
+@app.route('/subscribe', methods=['POST'])
+def subscribe():
+    channel_id = request.json.get('channelId')
 
-    except googleapiclient.errors.HttpError as e:
-        error_message = e.content.decode("utf-8")
-        print(f'Abonelik işlemi başarısız oldu: {error_message}')
-        return None
+    subscribe_to_channel(channel_id)
+
+    response = {'success': True}
+
+    return jsonify(response)
+
+@app.route('/jobs', methods=['GET'])
+def getJobs():
+
+    return jsonify(job_list)
+
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=7000)

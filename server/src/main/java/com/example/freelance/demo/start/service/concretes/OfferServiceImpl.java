@@ -53,22 +53,16 @@ public class OfferServiceImpl implements OfferService {
             int amount = offer.getAmount();
             User employer = offer.getJob().getUser(); // İşveren
             User freelancer = offer.getUser(); // İşi yapan kişi
-            if(offer.getJob().getActive()==true){
             // İşlem öncesi bakiye kontrolü
             if (employer.getWallet() < amount) {
                 throw new RuntimeException("Employer does not have sufficient balance for payment");
             }
-
             // İşverenin cüzdanından kesme
             employer.setWallet(employer.getWallet() - amount);
             userRepository.save(employer);
-
             // İşi yapan kişinin cüzdanına ekleme
             freelancer.setWallet(freelancer.getWallet() + amount);
             userRepository.save(freelancer);
-        } else {
-            throw new RuntimeException("Payment can only be made for accepted offers");
-        }
         }else {
             throw new RuntimeException("aktif olmayan iş");
         }
